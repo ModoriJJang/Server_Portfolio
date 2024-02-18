@@ -2,10 +2,21 @@
 //
 
 #include <iostream>
+#include "GameServer.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    GameServer* gameServer = new GameServer;
+
+    if (gameServer->Initialize())
+    {
+        while (true)
+        {
+            gameServer->Tick();
+        }
+    }
+    
+    gameServer->Destroy();
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
