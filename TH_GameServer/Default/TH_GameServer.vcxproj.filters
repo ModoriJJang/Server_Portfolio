@@ -7,11 +7,14 @@
     <Filter Include="01.GameServer">
       <UniqueIdentifier>{0c83ac65-82cf-45cb-80c0-578dce5cfd10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Packet">
+      <UniqueIdentifier>{4bb86d09-76ce-4c05-aeac-e7bb948d7b8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.DB">
+      <UniqueIdentifier>{2d01730e-8173-4175-ac63-3ecb07226ffe}</UniqueIdentifier>
+    </Filter>
     <Filter Include="02.Socket">
       <UniqueIdentifier>{13a55354-0755-4bc5-9cb5-bd247d497ee8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.DB">
-      <UniqueIdentifier>{4bb86d09-76ce-4c05-aeac-e7bb948d7b8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,10 +24,16 @@
     <ClCompile Include="..\Private\GameServer.cpp">
       <Filter>01.GameServer</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\Socket_System.cpp">
+      <Filter>02.Socket</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h">
       <Filter>01.GameServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Socket_System.h">
+      <Filter>02.Socket</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

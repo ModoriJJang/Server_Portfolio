@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\GameServer.cpp" />
+    <ClCompile Include="..\Private\Socket_System.cpp" />
     <ClCompile Include="..\Private\TH_GameServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h" />
+    <ClInclude Include="..\Public\Socket_System.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
