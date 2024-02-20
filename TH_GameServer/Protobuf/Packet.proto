@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package TH_SERVER;
+
+enum PACKET_TYPE {
+    CHAT = 0;
+    PLAYER = 1;
+    MONSTER = 2;
+}
+
+message PACKET {
+    PACKET_TYPE packettype = 1;
+    string Data = 2;
+}
+
+message TH_PACKET{
+    string clientid = 1;
+    repeated PACKET packet = 2;
+}

@@ -1,6 +1,7 @@
 #include "Socket_System.h"
 #include <thread>
 #include <iostream>
+#include "Packet_System.h"
 
 unsigned int WINAPI StartWorkerThread(void* src)
 {
@@ -229,10 +230,10 @@ void Socket_System::Recv()
 				int result = WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
 				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
 
+				stringstream recvPacket;
+				recvPacket << clientKey->messageBuffer;
 
-				//stringstream recvPacket;
-				//int packetType;
-				//recvPacket << clientKey->messageBuffer;
+				Packet_System::GetInstance().PacketProcess( recvPacket );
 				//recvPacket >> packetType;
 
 				//cout << clientKey->messageBuffer << endl;
