@@ -227,14 +227,17 @@ void Socket_System::Recv()
 			}
 			case IO_Recv:
 			{
-				int result = WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
+				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
 				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
 
-				std::stringstream recvPacket;
-				recvPacket << clientKey->messageBuffer;
+				Packet_System::GetInstance().ReceivePacket(clientKey->messageBuffer);
 
-				Packet_System::GetInstance().PacketProcess( recvPacket );
-				Broadcast( recvPacket );
+
+				//std::stringstream recvPacket;
+				//recvPacket << clientKey->messageBuffer;
+
+				//Packet_System::GetInstance().PacketProcess( recvPacket );
+				//Broadcast( recvPacket );
 				//recvPacket >> packetType;
 
 				//cout << clientKey->messageBuffer << endl;

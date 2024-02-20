@@ -18,6 +18,7 @@ public:
 
 public:
 	void PacketProcess( std::stringstream& recvPacket );
+	void ReceivePacket(char* recvPacket);
 	void BroadcastPacket( std::stringstream& sendPacket);
 };
 
