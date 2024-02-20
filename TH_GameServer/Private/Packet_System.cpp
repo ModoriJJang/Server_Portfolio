@@ -1,5 +1,11 @@
 #include "Packet_System.h"
+
 #include "../Protobuf/Packet.pb.cc"
+
+#include"Chat_System.h"
+#include "Socket_System.h"
+
+
 bool Packet_System::Initialize()
 {
 	return false;
@@ -12,12 +18,12 @@ void Packet_System::Destroy()
 {
 }
 
-void Packet_System::PacketProcess( stringstream& recvPacket )
+void Packet_System::PacketProcess( std::stringstream& recvPacket )
 {
 	TH_SERVER::TH_PACKET dataPacket;
 	dataPacket.ParseFromIstream( &recvPacket );
 
-	string client = dataPacket.clientid();
+	std::string client = dataPacket.clientid();
 	int size = dataPacket.packet_size();
 
 	TH_SERVER::PACKET_TYPE type = dataPacket.packet( 0 ).packettype();
@@ -28,7 +34,7 @@ void Packet_System::PacketProcess( stringstream& recvPacket )
 		switch ( packet.packettype() )
 		{
 		case TH_SERVER::PACKET_TYPE::CHAT:
-			packet.data();
+			Chat_System::GetInstance().Chat( "123123", packet.packetdata());
 			break;
 		case TH_SERVER::PACKET_TYPE::PLAYER:
 			a = 2;
@@ -39,4 +45,19 @@ void Packet_System::PacketProcess( stringstream& recvPacket )
 			break;
 		}
 	}
+}
+
+void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
+{
+	TH_SERVER::TH_PACKET dataPacket;
+	auto packet = dataPacket.add_packet();
+
+	packet->set_packettype( TH_SERVER::PACKET_TYPE::CHAT );
+	std::string temp = sendPacket.str();
+	packet->set_packetdata(temp);
+
+	std::stringstream stream;
+	dataPacket.SerializeToOstream( &stream );
+
+	Socket_System::GetInstance().Broadcast( stream );
 }

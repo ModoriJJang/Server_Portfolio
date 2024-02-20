@@ -10,8 +10,6 @@
 #include<set>
 #include <sstream>
 
-using namespace std;
-
 typedef enum _IO_State
 {
 	IO_Accept,
@@ -49,8 +47,8 @@ private:
 
 public:
 	void Recv();
-	void Send(PSocketContext socketContext, stringstream& message);
-	void Broadcast(stringstream& message);
+	void Send(PSocketContext socketContext, std::stringstream& message);
+	void Broadcast( std::stringstream& message);
 
 private:
 	int _workerThreadCount = 0;
@@ -61,6 +59,6 @@ private:
 	SOCKET _acceptSocket;
 
 	LPFN_ACCEPTEX _fnAcceptEx = NULL;
-	set<PSocketContext> _connectClients;
+	std::set<PSocketContext> _connectClients;
 };
 

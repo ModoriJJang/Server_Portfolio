@@ -10,7 +10,7 @@ enum PACKET_TYPE {
 
 message PACKET {
     PACKET_TYPE packettype = 1;
-    string Data = 2;
+    string packetdata = 2;
 }
 
 message TH_PACKET{

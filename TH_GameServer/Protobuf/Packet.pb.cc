@@ -19,7 +19,7 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace TH_SERVER {
 constexpr PACKET::PACKET(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : data_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  : packetdata_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , packettype_(0)
 {}
 struct PACKETDefaultTypeInternal {
@@ -57,7 +57,7 @@ const uint32_t TableStruct_Packet_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::TH_SERVER::PACKET, packettype_),
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::PACKET, data_),
+  PROTOBUF_FIELD_OFFSET(::TH_SERVER::PACKET, packetdata_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::TH_SERVER::TH_PACKET, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -78,16 +78,16 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_Packet_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014Packet.proto\022\tTH_SERVER\"B\n\006PACKET\022*\n\np"
+  "\n\014Packet.proto\022\tTH_SERVER\"H\n\006PACKET\022*\n\np"
   "ackettype\030\001 \001(\0162\026.TH_SERVER.PACKET_TYPE\022"
-  "\014\n\004Data\030\002 \001(\t\"@\n\tTH_PACKET\022\020\n\010clientid\030\001"
-  " \001(\t\022!\n\006packet\030\002 \003(\0132\021.TH_SERVER.PACKET*"
-  "0\n\013PACKET_TYPE\022\010\n\004CHAT\020\000\022\n\n\006PLAYER\020\001\022\013\n\007"
-  "MONSTER\020\002b\006proto3"
+  "\022\n\npacketdata\030\002 \001(\t\"@\n\tTH_PACKET\022\020\n\010clie"
+  "ntid\030\001 \001(\t\022!\n\006packet\030\002 \003(\0132\021.TH_SERVER.P"
+  "ACKET*0\n\013PACKET_TYPE\022\010\n\004CHAT\020\000\022\n\n\006PLAYER"
+  "\020\001\022\013\n\007MONSTER\020\002b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Packet_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Packet_2eproto = {
-  false, false, 217, descriptor_table_protodef_Packet_2eproto, "Packet.proto", 
+  false, false, 223, descriptor_table_protodef_Packet_2eproto, "Packet.proto", 
   &descriptor_table_Packet_2eproto_once, nullptr, 0, 2,
   schemas, file_default_instances, TableStruct_Packet_2eproto::offsets,
   file_level_metadata_Packet_2eproto, file_level_enum_descriptors_Packet_2eproto, file_level_service_descriptors_Packet_2eproto,
@@ -133,12 +133,12 @@ PACKET::PACKET(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 PACKET::PACKET(const PACKET& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  packetdata_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+    packetdata_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_data().empty()) {
-    data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_data(), 
+  if (!from._internal_packetdata().empty()) {
+    packetdata_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_packetdata(), 
       GetArenaForAllocation());
   }
   packettype_ = from.packettype_;
@@ -146,9 +146,9 @@ PACKET::PACKET(const PACKET& from)
 }
 
 inline void PACKET::SharedCtor() {
-data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+packetdata_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  packetdata_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 packettype_ = 0;
 }
@@ -162,7 +162,7 @@ PACKET::~PACKET() {
 
 inline void PACKET::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  data_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  packetdata_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void PACKET::ArenaDtor(void* object) {
@@ -181,7 +181,7 @@ void PACKET::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.ClearToEmpty();
+  packetdata_.ClearToEmpty();
   packettype_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -201,12 +201,12 @@ const char* PACKET::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
         } else
           goto handle_unusual;
         continue;
-      // string Data = 2;
+      // string packetdata = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_data();
+          auto str = _internal_mutable_packetdata();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "TH_SERVER.PACKET.Data"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "TH_SERVER.PACKET.packetdata"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -247,14 +247,14 @@ uint8_t* PACKET::_InternalSerialize(
       1, this->_internal_packettype(), target);
   }
 
-  // string Data = 2;
-  if (!this->_internal_data().empty()) {
+  // string packetdata = 2;
+  if (!this->_internal_packetdata().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_data().data(), static_cast<int>(this->_internal_data().length()),
+      this->_internal_packetdata().data(), static_cast<int>(this->_internal_packetdata().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "TH_SERVER.PACKET.Data");
+      "TH_SERVER.PACKET.packetdata");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_data(), target);
+        2, this->_internal_packetdata(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -273,11 +273,11 @@ size_t PACKET::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string Data = 2;
-  if (!this->_internal_data().empty()) {
+  // string packetdata = 2;
+  if (!this->_internal_packetdata().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_data());
+        this->_internal_packetdata());
   }
 
   // .TH_SERVER.PACKET_TYPE packettype = 1;
@@ -308,8 +308,8 @@ void PACKET::MergeFrom(const PACKET& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_data().empty()) {
-    _internal_set_data(from._internal_data());
+  if (!from._internal_packetdata().empty()) {
+    _internal_set_packetdata(from._internal_packetdata());
   }
   if (from._internal_packettype() != 0) {
     _internal_set_packettype(from._internal_packettype());
@@ -335,8 +335,8 @@ void PACKET::InternalSwap(PACKET* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &data_, lhs_arena,
-      &other->data_, rhs_arena
+      &packetdata_, lhs_arena,
+      &other->packetdata_, rhs_arena
   );
   swap(packettype_, other->packettype_);
 }

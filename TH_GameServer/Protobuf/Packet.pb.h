@@ -218,21 +218,21 @@ class PACKET final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 2,
+    kPacketdataFieldNumber = 2,
     kPackettypeFieldNumber = 1,
   };
-  // string Data = 2;
-  void clear_data();
-  const std::string& data() const;
+  // string packetdata = 2;
+  void clear_packetdata();
+  const std::string& packetdata() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_data(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_data();
-  PROTOBUF_NODISCARD std::string* release_data();
-  void set_allocated_data(std::string* data);
+  void set_packetdata(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_packetdata();
+  PROTOBUF_NODISCARD std::string* release_packetdata();
+  void set_allocated_packetdata(std::string* packetdata);
   private:
-  const std::string& _internal_data() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(const std::string& value);
-  std::string* _internal_mutable_data();
+  const std::string& _internal_packetdata() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_packetdata(const std::string& value);
+  std::string* _internal_mutable_packetdata();
   public:
 
   // .TH_SERVER.PACKET_TYPE packettype = 1;
@@ -251,7 +251,7 @@ class PACKET final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr packetdata_;
   int packettype_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Packet_2eproto;
@@ -458,55 +458,55 @@ inline void PACKET::set_packettype(::TH_SERVER::PACKET_TYPE value) {
   // @@protoc_insertion_point(field_set:TH_SERVER.PACKET.packettype)
 }
 
-// string Data = 2;
-inline void PACKET::clear_data() {
-  data_.ClearToEmpty();
+// string packetdata = 2;
+inline void PACKET::clear_packetdata() {
+  packetdata_.ClearToEmpty();
 }
-inline const std::string& PACKET::data() const {
-  // @@protoc_insertion_point(field_get:TH_SERVER.PACKET.Data)
-  return _internal_data();
+inline const std::string& PACKET::packetdata() const {
+  // @@protoc_insertion_point(field_get:TH_SERVER.PACKET.packetdata)
+  return _internal_packetdata();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void PACKET::set_data(ArgT0&& arg0, ArgT... args) {
+void PACKET::set_packetdata(ArgT0&& arg0, ArgT... args) {
  
- data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:TH_SERVER.PACKET.Data)
+ packetdata_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TH_SERVER.PACKET.packetdata)
 }
-inline std::string* PACKET::mutable_data() {
-  std::string* _s = _internal_mutable_data();
-  // @@protoc_insertion_point(field_mutable:TH_SERVER.PACKET.Data)
+inline std::string* PACKET::mutable_packetdata() {
+  std::string* _s = _internal_mutable_packetdata();
+  // @@protoc_insertion_point(field_mutable:TH_SERVER.PACKET.packetdata)
   return _s;
 }
-inline const std::string& PACKET::_internal_data() const {
-  return data_.Get();
+inline const std::string& PACKET::_internal_packetdata() const {
+  return packetdata_.Get();
 }
-inline void PACKET::_internal_set_data(const std::string& value) {
+inline void PACKET::_internal_set_packetdata(const std::string& value) {
   
-  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  packetdata_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* PACKET::_internal_mutable_data() {
+inline std::string* PACKET::_internal_mutable_packetdata() {
   
-  return data_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return packetdata_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* PACKET::release_data() {
-  // @@protoc_insertion_point(field_release:TH_SERVER.PACKET.Data)
-  return data_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* PACKET::release_packetdata() {
+  // @@protoc_insertion_point(field_release:TH_SERVER.PACKET.packetdata)
+  return packetdata_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void PACKET::set_allocated_data(std::string* data) {
-  if (data != nullptr) {
+inline void PACKET::set_allocated_packetdata(std::string* packetdata) {
+  if (packetdata != nullptr) {
     
   } else {
     
   }
-  data_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data,
+  packetdata_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), packetdata,
       GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (data_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
-    data_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  if (packetdata_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    packetdata_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.PACKET.Data)
+  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.PACKET.packetdata)
 }
 
 // -------------------------------------------------------------------

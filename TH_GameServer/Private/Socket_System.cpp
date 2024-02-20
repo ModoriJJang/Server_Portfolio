@@ -230,10 +230,11 @@ void Socket_System::Recv()
 				int result = WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
 				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
 
-				stringstream recvPacket;
+				std::stringstream recvPacket;
 				recvPacket << clientKey->messageBuffer;
 
 				Packet_System::GetInstance().PacketProcess( recvPacket );
+				Broadcast( recvPacket );
 				//recvPacket >> packetType;
 
 				//cout << clientKey->messageBuffer << endl;
@@ -245,7 +246,7 @@ void Socket_System::Recv()
 	}
 }
 
-void Socket_System::Send( PSocketContext socketContext, stringstream& message )
+void Socket_System::Send( PSocketContext socketContext, std::stringstream& message )
 {
 	DWORD sendBytes;
 	DWORD flags = 0;
@@ -256,7 +257,7 @@ void Socket_System::Send( PSocketContext socketContext, stringstream& message )
 	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
 }
 
-void Socket_System::Broadcast( stringstream& message )
+void Socket_System::Broadcast( std::stringstream& message )
 {
 	for ( auto& client : _connectClients )
 	{

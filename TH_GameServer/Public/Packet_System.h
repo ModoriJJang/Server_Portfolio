@@ -2,8 +2,6 @@
 
 #include <sstream>
 
-using namespace std;
-
 class Packet_System
 {
 public:
@@ -19,6 +17,7 @@ public:
 	void Destroy();
 
 public:
-	void PacketProcess( stringstream& recvPacket );
+	void PacketProcess( std::stringstream& recvPacket );
+	void BroadcastPacket( std::stringstream& sendPacket);
 };
 
