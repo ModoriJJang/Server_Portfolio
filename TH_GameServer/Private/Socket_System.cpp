@@ -2,6 +2,7 @@
 #include <thread>
 #include <iostream>
 #include "Packet_System.h"
+#include "Game_System.h"
 
 unsigned int WINAPI StartWorkerThread(void* src)
 {
@@ -172,6 +173,7 @@ void Socket_System::Recv()
 		{
 			clientKey = new SocketContext();
 			clientKey->socket = _acceptSocket;
+			clientKey->ClientId = Game_System::GetInstance().Add_Player_In_Server();
 			clientKey->wsaOverlapped = overlapped;
 			clientKey->dataBuffer.len = 4096;
 			clientKey->dataBuffer.buf = clientKey->messageBuffer;
@@ -184,6 +186,9 @@ void Socket_System::Recv()
 			printf("[System Info] 클라이언트 연결 종료 : %d\n", clientKey->socket);
 			closesocket(clientKey->socket);
 			_connectClients.erase(clientKey);
+
+			
+			Game_System::GetInstance().Remove_Player_In_Server( clientKey->ClientId );
 			continue;
 		}
 

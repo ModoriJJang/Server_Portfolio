@@ -21,15 +21,21 @@
   <ItemGroup>
     <ClCompile Include="..\Private\Chat_System.cpp" />
     <ClCompile Include="..\Private\GameServer.cpp" />
+    <ClCompile Include="..\Private\Game_System.cpp" />
     <ClCompile Include="..\Private\Packet_System.cpp" />
+    <ClCompile Include="..\Private\Player.cpp" />
     <ClCompile Include="..\Private\Socket_System.cpp" />
     <ClCompile Include="..\Private\TH_GameServer.cpp" />
+    <ClCompile Include="..\Private\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Chat_System.h" />
     <ClInclude Include="..\Public\GameServer.h" />
+    <ClInclude Include="..\Public\Game_System.h" />
     <ClInclude Include="..\Public\Packet_System.h" />
+    <ClInclude Include="..\Public\Player.h" />
     <ClInclude Include="..\Public\Socket_System.h" />
+    <ClInclude Include="..\Public\World.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -121,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../Public/;C:\Users\Admin\Desktop\Personal\Server_Portfolio\TH_GameServer\Library\Protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Public/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -130,7 +136,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

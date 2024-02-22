@@ -1,4 +1,5 @@
 #pragma once
+
 class Game_System
 {
 public:
@@ -12,5 +13,12 @@ public:
 	bool Initialize();
 	void Tick();
 	void Destroy();
+	
+public:
+	int Add_Player_In_Server();
+	void Remove_Player_In_Server( int PlayerId );
+
+public:
+	class World* _world;
 };
 

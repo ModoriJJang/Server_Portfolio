@@ -57,6 +57,9 @@
     <ClCompile Include="..\Private\Player.cpp">
       <Filter>07.Game\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\World.cpp">
+      <Filter>07.Game\World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="..\Public\Player.h">
       <Filter>07.Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\World.h">
+      <Filter>07.Game\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

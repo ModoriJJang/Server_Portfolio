@@ -20,6 +20,7 @@ typedef enum _IO_State
 typedef struct _SocketContext
 {
 	SOCKET socket;
+	int ClientId;
 	WSAOVERLAPPED wsaOverlapped;
 	WSABUF dataBuffer;
 	char messageBuffer[4096];
