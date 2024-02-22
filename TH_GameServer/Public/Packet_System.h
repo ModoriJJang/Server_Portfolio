@@ -17,8 +17,8 @@ public:
 	void Destroy();
 
 public:
-	void PacketProcess( std::stringstream& recvPacket );
 	void ReceivePacket(char* recvPacket);
+	void SendPacket(char* sendPacket);
 	void BroadcastPacket( std::stringstream& sendPacket);
 };
 

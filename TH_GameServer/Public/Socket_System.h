@@ -47,6 +47,7 @@ private:
 
 public:
 	void Recv();
+	void Send(PSocketContext socketContext, char* sendPacket);
 	void Send(PSocketContext socketContext, std::stringstream& message);
 	void Broadcast( std::stringstream& message);
 

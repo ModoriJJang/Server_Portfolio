@@ -232,21 +232,22 @@ void Socket_System::Recv()
 
 				Packet_System::GetInstance().ReceivePacket(clientKey->messageBuffer);
 
-
-				//std::stringstream recvPacket;
-				//recvPacket << clientKey->messageBuffer;
-
-				//Packet_System::GetInstance().PacketProcess( recvPacket );
-				//Broadcast( recvPacket );
-				//recvPacket >> packetType;
-
-				//cout << clientKey->messageBuffer << endl;
-
-
 				break;
 			}
 		}
 	}
+}
+
+void Socket_System::Send( PSocketContext socketContext, char* sendPacket )
+{
+	DWORD sendBytes;
+	DWORD flags = 0;
+	ULONG lenght = strlen( sendPacket );
+
+	memcpy(socketContext->messageBuffer, sendPacket, lenght);
+	socketContext->dataBuffer.buf = socketContext->messageBuffer;
+	socketContext->dataBuffer.len = lenght;
+	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
 }
 
 void Socket_System::Send( PSocketContext socketContext, std::stringstream& message )

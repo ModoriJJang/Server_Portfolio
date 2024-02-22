@@ -22,6 +22,18 @@
     <Filter Include="06.Chat">
       <UniqueIdentifier>{554c5466-b727-4e59-bd08-21d912d7a19a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Game">
+      <UniqueIdentifier>{f1fa88ea-8dd9-4671-83b7-9ecf1146b659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\Player">
+      <UniqueIdentifier>{ff0213ca-4d87-45e0-bd08-f6d96c5eceaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\Monster">
+      <UniqueIdentifier>{0faa14fb-f628-4234-8bba-45489246e517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\World">
+      <UniqueIdentifier>{d080adb4-04e5-4c53-b831-5017c8495649}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\TH_GameServer.cpp">
@@ -39,6 +51,12 @@
     <ClCompile Include="..\Private\Chat_System.cpp">
       <Filter>06.Chat</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\Game_System.cpp">
+      <Filter>07.Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Player.cpp">
+      <Filter>07.Game\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h">
@@ -52,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="..\Public\Chat_System.h">
       <Filter>06.Chat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Game_System.h">
+      <Filter>07.Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Player.h">
+      <Filter>07.Game\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

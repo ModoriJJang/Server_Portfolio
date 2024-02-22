@@ -18,10 +18,10 @@ void Packet_System::Destroy()
 {
 }
 
-void Packet_System::PacketProcess( std::stringstream& recvPacket )
+void Packet_System::ReceivePacket(char* recvPacket)
 {
 	TH_SERVER::TH_PACKET dataPacket;
-	dataPacket.ParseFromIstream( &recvPacket );
+	dataPacket.ParseFromArray(recvPacket, 4096);
 
 	std::string client = dataPacket.clientid();
 	int size = dataPacket.packet_size();
@@ -47,10 +47,8 @@ void Packet_System::PacketProcess( std::stringstream& recvPacket )
 	}
 }
 
-void Packet_System::ReceivePacket(char* recvPacket)
+void Packet_System::SendPacket( char* sendPacket )
 {
-	TH_SERVER::TH_PACKET dataPacket;
-	dataPacket.ParseFromArray(&recvPacket, 4096);
 }
 
 void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
