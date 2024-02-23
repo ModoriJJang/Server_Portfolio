@@ -16,9 +16,6 @@
     <Filter Include="04.gRPC">
       <UniqueIdentifier>{2d01730e-8173-4175-ac63-3ecb07226ffe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.DB">
-      <UniqueIdentifier>{46b149b9-3b11-4aba-8de0-b5a5801495e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.Chat">
       <UniqueIdentifier>{554c5466-b727-4e59-bd08-21d912d7a19a}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,9 @@
     </Filter>
     <Filter Include="07.Game\World">
       <UniqueIdentifier>{d080adb4-04e5-4c53-b831-5017c8495649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Database">
+      <UniqueIdentifier>{46b149b9-3b11-4aba-8de0-b5a5801495e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +60,12 @@
     <ClCompile Include="..\Private\World.cpp">
       <Filter>07.Game\World</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\gRPC_System.cpp">
+      <Filter>04.gRPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Database_System.cpp">
+      <Filter>05.Database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h">
@@ -82,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="..\Public\World.h">
       <Filter>07.Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\gRPC_System.h">
+      <Filter>04.gRPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Database_System.h">
+      <Filter>05.Database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
