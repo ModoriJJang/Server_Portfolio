@@ -7,6 +7,10 @@ bool World::Initialize()
 
 void World::Tick()
 {
+    for ( auto& player : _players )
+    {
+        player.second->Tick();
+    }
 }
 
 void World::Destroy()
@@ -16,7 +20,7 @@ void World::Destroy()
 void World::Add_Player( int playerId, Player* player )
 {
     _players.insert( std::make_pair( playerId, player ) );
-    printf("Player 积己 PlayerId : %d",playerId);
+    printf("Player 积己 PlayerId : %d\n",playerId);
 }
 
 int World::Get_New_PlayerId()
@@ -30,5 +34,5 @@ void World::Remove_Player( int playerId )
     _players[playerId] = nullptr;
     _players.erase( playerId );
 
-    printf("Player 昏力 PlayerId : %d",playerId);
+    printf("Player 昏力 PlayerId : %d\n",playerId);
 }

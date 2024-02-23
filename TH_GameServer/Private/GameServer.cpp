@@ -10,8 +10,11 @@ bool GameServer::Initialize()
 
 void GameServer::Tick()
 {
+	Game_System::GetInstance().Tick();
 }
 
 void GameServer::Destroy()
 {
+	Game_System::GetInstance().Destroy();
+	Socket_System::GetInstance().Destroy();
 }

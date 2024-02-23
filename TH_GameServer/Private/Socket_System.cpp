@@ -255,6 +255,14 @@ void Socket_System::Send( PSocketContext socketContext, char* sendPacket )
 	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
 }
 
+void Socket_System::Broadcast( char* sendPacket )
+{
+	for ( auto& client : _connectClients )
+	{
+		Send(client, sendPacket);
+	}
+}
+
 void Socket_System::Send( PSocketContext socketContext, std::stringstream& message )
 {
 	DWORD sendBytes;

@@ -24,10 +24,6 @@ void Packet_System::ReceivePacket(char* recvPacket)
 	dataPacket.ParseFromArray(recvPacket, 4096);
 
 	std::string client = dataPacket.clientid();
-	int size = dataPacket.packet_size();
-
-	TH_SERVER::PACKET_TYPE type = dataPacket.packet( 0 ).packettype();
-	int a = 0;
 
 	for ( auto& packet : dataPacket.packet() )
 	{
@@ -37,7 +33,6 @@ void Packet_System::ReceivePacket(char* recvPacket)
 			Chat_System::GetInstance().Chat( "123123", packet.packetdata());
 			break;
 		case TH_SERVER::PACKET_TYPE::PLAYER:
-			a = 2;
 			break;
 		case TH_SERVER::PACKET_TYPE::MONSTER:
 			break;
@@ -60,8 +55,8 @@ void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
 	std::string temp = sendPacket.str();
 	packet->set_packetdata(temp);
 
-	std::stringstream stream;
-	dataPacket.SerializeToOstream( &stream );
+	char* sendBuffer = new char[4096];
+	dataPacket.SerializeToArray( sendBuffer, 4096 );
 
-	Socket_System::GetInstance().Broadcast( stream );
+	Socket_System::GetInstance().Broadcast( sendBuffer );
 }

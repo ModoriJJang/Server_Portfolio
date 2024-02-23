@@ -24,11 +24,12 @@ void Chat_System::Chat( std::string channel, std::string chat )
         *buffer << chat + "\n";
         _chatChannel.insert( make_pair( channel, buffer ));
 
+
         Packet_System::GetInstance().BroadcastPacket( *buffer );
     }
     else
     {
-        *(iter->second) << chat;
+        *(iter->second) << chat + "\n";
         Packet_System::GetInstance().BroadcastPacket( *( iter->second ) );
     }
 }

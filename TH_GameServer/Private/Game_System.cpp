@@ -10,6 +10,7 @@ bool Game_System::Initialize()
 
 void Game_System::Tick()
 {
+    _world->Tick();
 }
 
 void Game_System::Destroy()
@@ -20,6 +21,7 @@ int Game_System::Add_Player_In_Server()
 {
     Player* player = new Player();
     int playerId = _world->Get_New_PlayerId();
+    player->_ID = playerId;
     _world->Add_Player( playerId , player);
 
     return playerId;

@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/TH_GameServer/Protobuf/libprotobuf.dll
+/TH_GameServer/Protobuf/libprotoc.dll
+/TH_GameServer/Protobuf/protoc.exe

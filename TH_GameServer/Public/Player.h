@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <string>
 class Player
 {
 public:
@@ -9,5 +9,6 @@ public:
 	void Destroy();
 
 public:
+	std::string _ID;
 };
 
