@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Private\Channel.cpp" />
     <ClCompile Include="..\Private\Chat_System.cpp" />
     <ClCompile Include="..\Private\Database_System.cpp" />
+    <ClCompile Include="..\Private\GameObject.cpp" />
     <ClCompile Include="..\Private\GameServer.cpp" />
     <ClCompile Include="..\Private\Game_System.cpp" />
     <ClCompile Include="..\Private\gRPC_System.cpp" />
@@ -28,17 +30,21 @@
     <ClCompile Include="..\Private\Player.cpp" />
     <ClCompile Include="..\Private\Socket_System.cpp" />
     <ClCompile Include="..\Private\TH_GameServer.cpp" />
+    <ClCompile Include="..\Private\Server.cpp" />
     <ClCompile Include="..\Private\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Public\Channel.h" />
     <ClInclude Include="..\Public\Chat_System.h" />
     <ClInclude Include="..\Public\Database_System.h" />
+    <ClInclude Include="..\Public\GameObject.h" />
     <ClInclude Include="..\Public\GameServer.h" />
     <ClInclude Include="..\Public\Game_System.h" />
     <ClInclude Include="..\Public\gRPC_System.h" />
     <ClInclude Include="..\Public\Packet_System.h" />
     <ClInclude Include="..\Public\Player.h" />
     <ClInclude Include="..\Public\Socket_System.h" />
+    <ClInclude Include="..\Public\Server.h" />
     <ClInclude Include="..\Public\World.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -133,7 +139,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../Public/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>

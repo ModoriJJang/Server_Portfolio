@@ -1,5 +1,5 @@
 #pragma once
-class World
+class Channel
 {
 public:
 	bool Initialize();

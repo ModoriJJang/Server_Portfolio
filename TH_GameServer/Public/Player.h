@@ -1,7 +1,9 @@
 #pragma once
+#include "GameObject.h"
 
 #include <string>
-class Player
+
+class Player :  GameObject
 {
 public:
 	bool Initialize();

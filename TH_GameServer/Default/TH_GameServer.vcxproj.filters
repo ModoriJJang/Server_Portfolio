@@ -22,17 +22,26 @@
     <Filter Include="07.Game">
       <UniqueIdentifier>{f1fa88ea-8dd9-4671-83b7-9ecf1146b659}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Game\Player">
-      <UniqueIdentifier>{ff0213ca-4d87-45e0-bd08-f6d96c5eceaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Game\Monster">
-      <UniqueIdentifier>{0faa14fb-f628-4234-8bba-45489246e517}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Game\World">
-      <UniqueIdentifier>{d080adb4-04e5-4c53-b831-5017c8495649}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.Database">
       <UniqueIdentifier>{46b149b9-3b11-4aba-8de0-b5a5801495e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\GameObject">
+      <UniqueIdentifier>{33285e2b-8040-46c8-b788-c4608c947536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\GameObject\Monster">
+      <UniqueIdentifier>{0faa14fb-f628-4234-8bba-45489246e517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\GameObject\Player">
+      <UniqueIdentifier>{ff0213ca-4d87-45e0-bd08-f6d96c5eceaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\Server">
+      <UniqueIdentifier>{d080adb4-04e5-4c53-b831-5017c8495649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\Server\Channel">
+      <UniqueIdentifier>{171621ff-eb48-4f7f-881c-3727bf89669f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\World">
+      <UniqueIdentifier>{9f91a1df-425a-45ea-b326-b463e189bc71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,16 +64,25 @@
       <Filter>07.Game</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Player.cpp">
-      <Filter>07.Game\Player</Filter>
+      <Filter>07.Game\GameObject\Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\Private\World.cpp">
-      <Filter>07.Game\World</Filter>
+    <ClCompile Include="..\Private\Server.cpp">
+      <Filter>07.Game\Server</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\gRPC_System.cpp">
       <Filter>04.gRPC</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Database_System.cpp">
       <Filter>05.Database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\GameObject.cpp">
+      <Filter>07.Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Channel.cpp">
+      <Filter>07.Game\Server\Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\World.cpp">
+      <Filter>07.Game\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,16 +102,25 @@
       <Filter>07.Game</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Player.h">
-      <Filter>07.Game\Player</Filter>
+      <Filter>07.Game\GameObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="..\Public\World.h">
-      <Filter>07.Game\World</Filter>
+    <ClInclude Include="..\Public\Server.h">
+      <Filter>07.Game\Server</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\gRPC_System.h">
       <Filter>04.gRPC</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Database_System.h">
       <Filter>05.Database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\GameObject.h">
+      <Filter>07.Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Channel.h">
+      <Filter>07.Game\Server\Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\World.h">
+      <Filter>07.Game\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

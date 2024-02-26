@@ -173,7 +173,6 @@ void Socket_System::Recv()
 		{
 			clientKey = new SocketContext();
 			clientKey->socket = _acceptSocket;
-			clientKey->ClientId = Game_System::GetInstance().Add_Player_In_Server();
 			clientKey->wsaOverlapped = overlapped;
 			clientKey->dataBuffer.len = 4096;
 			clientKey->dataBuffer.buf = clientKey->messageBuffer;
@@ -201,7 +200,7 @@ void Socket_System::Recv()
 				printf("[Thread] : %i / [Socket] : %i\n", std::this_thread::get_id(), clientKey->socket);
 
 				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
-
+				clientKey->ClientId = Game_System::GetInstance().Add_Player_In_Server();
 				_acceptSocket = WSASocketW(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
 				if (_acceptSocket == INVALID_SOCKET)
 				{
