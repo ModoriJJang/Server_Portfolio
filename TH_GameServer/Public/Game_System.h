@@ -4,12 +4,6 @@
 #include <unordered_map>
 #include <vector>
 #include <thread>
-enum WORLD_NAME
-{
-	WORLD_0,
-	WORLD_1,
-	WORLD_END,
-};
 
 class Game_System
 {
@@ -32,9 +26,14 @@ public:
 	int Add_Player_In_Server();
 	void Remove_Player_In_Server( int PlayerId );
 
+	unsigned int Get_Network_ID()
+	{
+		return _network_ID++;
+	}
+
 public:
-	std::unordered_map<WORLD_NAME, Server*>_worlds;
+	std::unordered_map<SERVER_NAME, Server*>_worlds;
 	
-	unsigned int _NetworkID;
+	unsigned int _network_ID;
 };
 

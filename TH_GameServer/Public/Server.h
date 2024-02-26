@@ -4,6 +4,13 @@
 #include "Player.h"
 #include "Channel.h"
 
+enum SERVER_NAME
+{
+	SERVER_0,
+	SERVER_1,
+	SERVER_END,
+};
+
 class Server
 {
 public:

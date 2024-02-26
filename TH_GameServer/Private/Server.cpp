@@ -6,8 +6,8 @@ bool Server::Initialize()
 
     for ( size_t index = 0; index < MAX_CHANNEL; index++ )
     {
+        _channels[index].Set_Channel_ID( index );
         _channels[index].Initialize();
-        printf( "[World] Channel %d Init \n", (int)index );
     }
     return true;
 }
