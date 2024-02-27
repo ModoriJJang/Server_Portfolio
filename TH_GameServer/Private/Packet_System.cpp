@@ -1,15 +1,39 @@
+
 #include "Packet_System.h"
+
+#include <flatbuffers/flatbuffers.h>
+#include "../FlatBuffers/GamePacket_generated.h"
 
 #include "../Protobuf/Packet.pb.cc"
 
 #include"Chat_System.h"
 #include "Socket_System.h"
 
+#include <vector>
+
+using namespace TH_Server::TH_Packet;
 
 bool Packet_System::Initialize()
 {
+	flatbuffers::FlatBufferBuilder builder( 4096 );
+	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token")).Union());
+	auto packet2 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token")).Union());
+
+	std::vector<flatbuffers::Offset<Packet>> packets;
+	packets.emplace_back(packet1);
+	packets.emplace_back(packet2);
+
+
+	auto protocol = CreateProtocol( builder, builder.CreateString("test"), Server_Server_1, 1, builder.CreateVector(packets).o	);
+	builder.Finish( protocol );
+
+	auto data = builder.GetBufferPointer();
+
+	auto temp = GetProtocol( data );
+
 	return false;
 }
+
 void Packet_System::Tick()
 {
 }

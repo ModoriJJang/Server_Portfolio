@@ -18,6 +18,8 @@ bool Socket_System::Initialize()
 	CreateSocket();
 	CreateWorkerThread();
 
+	Packet_System::GetInstance().Initialize();
+
 	return true;
 }
 

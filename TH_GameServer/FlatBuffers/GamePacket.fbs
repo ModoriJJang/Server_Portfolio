@@ -1,0 +1,58 @@
+namespace TH_Server.TH_Packet;
+
+enum Server:byte {
+    Server_1,
+    Server_2,
+    Server_END,
+}
+
+enum Chat:byte {
+    World,
+    Channel,
+    General,
+    Whisper,
+}
+
+table LOGIN_DATA {
+    token:string;
+}
+
+table CHAT_DATA {
+    target:string;
+    chat_type:Chat;
+    message:string;
+}
+
+table PLAYER_DATA {
+    position:Vector3;
+}
+
+table MONSTER_DATA {
+    position:Vector3;
+}
+
+union PacketData {
+    LOGIN:LOGIN_DATA,
+    CHAT:CHAT_DATA,
+    PLAYER:PLAYER_DATA,
+    MONSTER:MONSTER_DATA,
+}
+
+struct Vector3 {
+    x:float;
+    y:float;
+    z:float;
+}
+
+table Protocol {
+    clientid:string;
+    server:Server;
+    channel:int;
+    packet:[Packet];
+}
+
+table Packet {
+    data:PacketData;
+}
+
+root_type Protocol;
