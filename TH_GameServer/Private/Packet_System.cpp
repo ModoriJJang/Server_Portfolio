@@ -16,8 +16,8 @@ using namespace TH_Server::TH_Packet;
 bool Packet_System::Initialize()
 {
 	flatbuffers::FlatBufferBuilder builder( 4096 );
-	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token")).Union());
-	auto packet2 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token")).Union());
+	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token1")).Union());
+	auto packet2 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token2")).Union());
 
 	std::vector<flatbuffers::Offset<Packet>> packets;
 	packets.emplace_back(packet1);
@@ -30,7 +30,17 @@ bool Packet_System::Initialize()
 	auto data = builder.GetBufferPointer();
 
 	auto temp = GetProtocol( data );
+	auto test = temp->packet()->Get( 0 );
 
+	for ( auto it = temp->packet()->begin(); it != temp->packet()->end(); it++ )
+	{
+		if ( it->data_type() == PacketData_LOGIN )
+		{
+			std::string token = it->data_as_LOGIN()->token()->str();
+			int a = 0;
+		}
+	}
+	
 	return false;
 }
 
