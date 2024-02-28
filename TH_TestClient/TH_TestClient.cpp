@@ -86,6 +86,7 @@ int main()
 
 	char recvData[4096] = { 0, };
 	recv(serverSocket, recvData, 4096, NULL);
+	cout << "로그인 성공" << endl;
 	int a = 0;
 	while (true)
 	{

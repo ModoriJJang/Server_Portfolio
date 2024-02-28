@@ -267,9 +267,11 @@ void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacke
 	DWORD flags = 0;
 	ULONG lenght = 4096;
 
-	memcpy(socketContext->messageBuffer, sendPacket, lenght);
-	socketContext->dataBuffer.buf = socketContext->messageBuffer;
-	socketContext->dataBuffer.len = lenght;
+	/*memcpy(socketContext->messageBuffer, sendPacket, lenght);
+	socketContext->dataBuffer.buf = socketContext->messageBuffer;*/
+	//memcpy(socketContext->messageBuffer, sendPacket, lenght);
+	socketContext->dataBuffer.buf = (char*)sendPacket;
+	socketContext->dataBuffer.len = 4096;
 	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
 }
 
