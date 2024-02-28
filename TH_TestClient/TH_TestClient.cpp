@@ -76,9 +76,7 @@ int main()
 	builder.Finish( protocol );
 
 	auto sendPacket = builder.GetBufferPointer();
-
-	auto temp = GetProtocol( (char*) sendPacket );
-	auto temp2 = temp->clientid()->str();
+	
 
 	DWORD flags = 0;
 
@@ -86,7 +84,14 @@ int main()
 
 	char recvData[4096] = { 0, };
 	recv(serverSocket, recvData, 4096, NULL);
+
+	auto temp = GetProtocol(recvData);
+	std::string test = temp->clientid()->str();
+
 	cout << "로그인 성공" << endl;
+
+	cout << test << endl;
+
 	int a = 0;
 	while (true)
 	{
