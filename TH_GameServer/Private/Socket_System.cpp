@@ -203,7 +203,7 @@ void Socket_System::Recv()
 		{
 			case IO_Accept:
 			{
-				clientKey->IoState = IO_Recv;
+				clientKey->IoState = IO_Login;
 
 				printf("[Thread] : %i / [Socket] : %i\n", std::this_thread::get_id(), clientKey->socket);
 
@@ -245,6 +245,7 @@ void Socket_System::Recv()
 				Packet_System::GetInstance().ReceivePacket( clientKey, clientKey->messageBuffer);
 
 				_connectClients.insert(clientKey);
+				clientKey->IoState = IO_Recv;
 				break;
 			}
 			case IO_Recv:
@@ -264,7 +265,7 @@ void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacke
 {
 	DWORD sendBytes;
 	DWORD flags = 0;
-	ULONG lenght = strlen( (char*)sendPacket );
+	ULONG lenght = 4096;
 
 	memcpy(socketContext->messageBuffer, sendPacket, lenght);
 	socketContext->dataBuffer.buf = socketContext->messageBuffer;

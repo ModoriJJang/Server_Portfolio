@@ -73,6 +73,8 @@ void Packet_System::ReceivePacket(PSocketContext client, char* recvPacket)
 		return;
 	}
 
+	std::string clientID = protocol->clientid()->str();
+
 	auto packets = protocol->packet();
 
 	if ( packets == nullptr )
@@ -86,14 +88,9 @@ void Packet_System::ReceivePacket(PSocketContext client, char* recvPacket)
 	}
 }
 
-void Packet_System::SendPacket( PSocketContext client, std::vector<flatbuffers::Offset<Packet>> packets )
+void Packet_System::SendPacket( PSocketContext client, std::vector<flatbuffers::Offset<Packet>>& packets )
 {
-	flatbuffers::FlatBufferBuilder builder( 4096 );
-	auto protocol = CreateProtocol( builder, builder.CreateString("Server"), EServer_MIN, 0, builder.CreateVector(packets).o	);
-	builder.Finish( protocol );
-
-
-	Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
+	
 }
 
 void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
@@ -128,7 +125,13 @@ void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* 
 	std::vector<flatbuffers::Offset<Packet>> packets;
 	packets.emplace_back( ClientPacket );
 
-	GetInstance().SendPacket( client, packets );
+
+	auto clientProtocol = CreateProtocol( builder, builder.CreateString("Server"), EServer_MIN, 0, builder.CreateVector(packets));
+	builder.Finish( clientProtocol );
+
+	Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
+
+	//GetInstance().SendPacket( client, packets );
 	//Game_System::GetInstance().Add_Player_In_Server();
 }
 

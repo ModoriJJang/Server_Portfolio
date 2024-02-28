@@ -25,7 +25,7 @@ public:
 
 public:
 	void ReceivePacket(PSocketContext client, char* recvPacket);
-	void SendPacket(PSocketContext client, std::vector<flatbuffers::Offset<Packet>> packets);
+	void SendPacket(PSocketContext client, std::vector<flatbuffers::Offset<Packet>>& packets);
 	void BroadcastPacket( std::stringstream& sendPacket);
 
 private:
