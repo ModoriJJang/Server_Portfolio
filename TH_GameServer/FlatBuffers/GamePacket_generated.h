@@ -36,24 +36,24 @@ struct ProtocolBuilder;
 struct Packet;
 struct PacketBuilder;
 
-enum Server : int8_t {
-  Server_Server_1 = 0,
-  Server_Server_2 = 1,
-  Server_Server_END = 2,
-  Server_MIN = Server_Server_1,
-  Server_MAX = Server_Server_END
+enum EServer : int8_t {
+  EServer_Server_1 = 0,
+  EServer_Server_2 = 1,
+  EServer_Server_END = 2,
+  EServer_MIN = EServer_Server_1,
+  EServer_MAX = EServer_Server_END
 };
 
-inline const Server (&EnumValuesServer())[3] {
-  static const Server values[] = {
-    Server_Server_1,
-    Server_Server_2,
-    Server_Server_END
+inline const EServer (&EnumValuesEServer())[3] {
+  static const EServer values[] = {
+    EServer_Server_1,
+    EServer_Server_2,
+    EServer_Server_END
   };
   return values;
 }
 
-inline const char * const *EnumNamesServer() {
+inline const char * const *EnumNamesEServer() {
   static const char * const names[4] = {
     "Server_1",
     "Server_2",
@@ -63,32 +63,32 @@ inline const char * const *EnumNamesServer() {
   return names;
 }
 
-inline const char *EnumNameServer(Server e) {
-  if (::flatbuffers::IsOutRange(e, Server_Server_1, Server_Server_END)) return "";
+inline const char *EnumNameEServer(EServer e) {
+  if (::flatbuffers::IsOutRange(e, EServer_Server_1, EServer_Server_END)) return "";
   const size_t index = static_cast<size_t>(e);
-  return EnumNamesServer()[index];
+  return EnumNamesEServer()[index];
 }
 
-enum Chat : int8_t {
-  Chat_World = 0,
-  Chat_Channel = 1,
-  Chat_General = 2,
-  Chat_Whisper = 3,
-  Chat_MIN = Chat_World,
-  Chat_MAX = Chat_Whisper
+enum EChat : int8_t {
+  EChat_World = 0,
+  EChat_Channel = 1,
+  EChat_General = 2,
+  EChat_Whisper = 3,
+  EChat_MIN = EChat_World,
+  EChat_MAX = EChat_Whisper
 };
 
-inline const Chat (&EnumValuesChat())[4] {
-  static const Chat values[] = {
-    Chat_World,
-    Chat_Channel,
-    Chat_General,
-    Chat_Whisper
+inline const EChat (&EnumValuesEChat())[4] {
+  static const EChat values[] = {
+    EChat_World,
+    EChat_Channel,
+    EChat_General,
+    EChat_Whisper
   };
   return values;
 }
 
-inline const char * const *EnumNamesChat() {
+inline const char * const *EnumNamesEChat() {
   static const char * const names[5] = {
     "World",
     "Channel",
@@ -99,10 +99,10 @@ inline const char * const *EnumNamesChat() {
   return names;
 }
 
-inline const char *EnumNameChat(Chat e) {
-  if (::flatbuffers::IsOutRange(e, Chat_World, Chat_Whisper)) return "";
+inline const char *EnumNameEChat(EChat e) {
+  if (::flatbuffers::IsOutRange(e, EChat_World, EChat_Whisper)) return "";
   const size_t index = static_cast<size_t>(e);
-  return EnumNamesChat()[index];
+  return EnumNamesEChat()[index];
 }
 
 enum PacketData : uint8_t {
@@ -257,8 +257,8 @@ struct CHAT_DATA FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const ::flatbuffers::String *target() const {
     return GetPointer<const ::flatbuffers::String *>(VT_TARGET);
   }
-  TH_Server::TH_Packet::Chat chat_type() const {
-    return static_cast<TH_Server::TH_Packet::Chat>(GetField<int8_t>(VT_CHAT_TYPE, 0));
+  TH_Server::TH_Packet::EChat chat_type() const {
+    return static_cast<TH_Server::TH_Packet::EChat>(GetField<int8_t>(VT_CHAT_TYPE, 0));
   }
   const ::flatbuffers::String *message() const {
     return GetPointer<const ::flatbuffers::String *>(VT_MESSAGE);
@@ -281,7 +281,7 @@ struct CHAT_DATABuilder {
   void add_target(::flatbuffers::Offset<::flatbuffers::String> target) {
     fbb_.AddOffset(CHAT_DATA::VT_TARGET, target);
   }
-  void add_chat_type(TH_Server::TH_Packet::Chat chat_type) {
+  void add_chat_type(TH_Server::TH_Packet::EChat chat_type) {
     fbb_.AddElement<int8_t>(CHAT_DATA::VT_CHAT_TYPE, static_cast<int8_t>(chat_type), 0);
   }
   void add_message(::flatbuffers::Offset<::flatbuffers::String> message) {
@@ -301,7 +301,7 @@ struct CHAT_DATABuilder {
 inline ::flatbuffers::Offset<CHAT_DATA> CreateCHAT_DATA(
     ::flatbuffers::FlatBufferBuilder &_fbb,
     ::flatbuffers::Offset<::flatbuffers::String> target = 0,
-    TH_Server::TH_Packet::Chat chat_type = TH_Server::TH_Packet::Chat_World,
+    TH_Server::TH_Packet::EChat chat_type = TH_Server::TH_Packet::EChat_World,
     ::flatbuffers::Offset<::flatbuffers::String> message = 0) {
   CHAT_DATABuilder builder_(_fbb);
   builder_.add_message(message);
@@ -313,7 +313,7 @@ inline ::flatbuffers::Offset<CHAT_DATA> CreateCHAT_DATA(
 inline ::flatbuffers::Offset<CHAT_DATA> CreateCHAT_DATADirect(
     ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *target = nullptr,
-    TH_Server::TH_Packet::Chat chat_type = TH_Server::TH_Packet::Chat_World,
+    TH_Server::TH_Packet::EChat chat_type = TH_Server::TH_Packet::EChat_World,
     const char *message = nullptr) {
   auto target__ = target ? _fbb.CreateString(target) : 0;
   auto message__ = message ? _fbb.CreateString(message) : 0;
@@ -417,8 +417,8 @@ struct Protocol FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const ::flatbuffers::String *clientid() const {
     return GetPointer<const ::flatbuffers::String *>(VT_CLIENTID);
   }
-  TH_Server::TH_Packet::Server server() const {
-    return static_cast<TH_Server::TH_Packet::Server>(GetField<int8_t>(VT_SERVER, 0));
+  TH_Server::TH_Packet::EServer server() const {
+    return static_cast<TH_Server::TH_Packet::EServer>(GetField<int8_t>(VT_SERVER, 0));
   }
   int32_t channel() const {
     return GetField<int32_t>(VT_CHANNEL, 0);
@@ -446,7 +446,7 @@ struct ProtocolBuilder {
   void add_clientid(::flatbuffers::Offset<::flatbuffers::String> clientid) {
     fbb_.AddOffset(Protocol::VT_CLIENTID, clientid);
   }
-  void add_server(TH_Server::TH_Packet::Server server) {
+  void add_server(TH_Server::TH_Packet::EServer server) {
     fbb_.AddElement<int8_t>(Protocol::VT_SERVER, static_cast<int8_t>(server), 0);
   }
   void add_channel(int32_t channel) {
@@ -469,7 +469,7 @@ struct ProtocolBuilder {
 inline ::flatbuffers::Offset<Protocol> CreateProtocol(
     ::flatbuffers::FlatBufferBuilder &_fbb,
     ::flatbuffers::Offset<::flatbuffers::String> clientid = 0,
-    TH_Server::TH_Packet::Server server = TH_Server::TH_Packet::Server_Server_1,
+    TH_Server::TH_Packet::EServer server = TH_Server::TH_Packet::EServer_Server_1,
     int32_t channel = 0,
     ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<TH_Server::TH_Packet::Packet>>> packet = 0) {
   ProtocolBuilder builder_(_fbb);
@@ -483,7 +483,7 @@ inline ::flatbuffers::Offset<Protocol> CreateProtocol(
 inline ::flatbuffers::Offset<Protocol> CreateProtocolDirect(
     ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *clientid = nullptr,
-    TH_Server::TH_Packet::Server server = TH_Server::TH_Packet::Server_Server_1,
+    TH_Server::TH_Packet::EServer server = TH_Server::TH_Packet::EServer_Server_1,
     int32_t channel = 0,
     const std::vector<::flatbuffers::Offset<TH_Server::TH_Packet::Packet>> *packet = nullptr) {
   auto clientid__ = clientid ? _fbb.CreateString(clientid) : 0;

@@ -13,6 +13,7 @@
 typedef enum _IO_State
 {
 	IO_Accept,
+	IO_Login,
 	IO_Recv,
 	IO_Send,
 }IO_State, * PIO_State;
@@ -48,10 +49,8 @@ private:
 
 public:
 	void Recv();
-	void Send(PSocketContext socketContext, char* sendPacket);
-	void Broadcast( char* sendPacket );
-	void Send(PSocketContext socketContext, std::stringstream& message);
-	void Broadcast( std::stringstream& message);
+	void Send(PSocketContext socketContext, unsigned char* sendPacket);
+	void Broadcast( unsigned char* sendPacket );
 
 private:
 	int _workerThreadCount = 0;

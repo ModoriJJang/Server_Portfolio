@@ -1,7 +1,8 @@
+#include "Packet_System.h"
 #include "Socket_System.h"
 #include <thread>
 #include <iostream>
-#include "Packet_System.h"
+
 #include "Game_System.h"
 
 unsigned int WINAPI StartWorkerThread(void* src)
@@ -179,15 +180,20 @@ void Socket_System::Recv()
 			clientKey->dataBuffer.len = 4096;
 			clientKey->dataBuffer.buf = clientKey->messageBuffer;
 			CreateIoCompletionPort((HANDLE)_acceptSocket, _completionPort, (ULONG_PTR)clientKey, NULL);
-			_connectClients.insert(clientKey);
+			
 		}
 
 		if (result == FALSE && byte == 0)
 		{
 			printf("[System Info] 클라이언트 연결 종료 : %d\n", clientKey->socket);
-			closesocket(clientKey->socket);
-			_connectClients.erase(clientKey);
 
+			if ( clientKey->IoState > IO_Login )
+			{
+				_connectClients.erase(clientKey);
+			}
+			
+
+			closesocket(clientKey->socket);
 			
 			Game_System::GetInstance().Remove_Player_In_Server( clientKey->ClientId );
 			continue;
@@ -231,12 +237,22 @@ void Socket_System::Recv()
 
 				break;
 			}
+			case IO_Login:
+			{
+				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
+				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
+
+				Packet_System::GetInstance().ReceivePacket( clientKey, clientKey->messageBuffer);
+
+				_connectClients.insert(clientKey);
+				break;
+			}
 			case IO_Recv:
 			{
 				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
 				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
 
-				Packet_System::GetInstance().ReceivePacket(clientKey->messageBuffer);
+				Packet_System::GetInstance().ReceivePacket( clientKey, clientKey->messageBuffer);
 
 				break;
 			}
@@ -244,11 +260,11 @@ void Socket_System::Recv()
 	}
 }
 
-void Socket_System::Send( PSocketContext socketContext, char* sendPacket )
+void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacket )
 {
 	DWORD sendBytes;
 	DWORD flags = 0;
-	ULONG lenght = strlen( sendPacket );
+	ULONG lenght = strlen( (char*)sendPacket );
 
 	memcpy(socketContext->messageBuffer, sendPacket, lenght);
 	socketContext->dataBuffer.buf = socketContext->messageBuffer;
@@ -256,29 +272,10 @@ void Socket_System::Send( PSocketContext socketContext, char* sendPacket )
 	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
 }
 
-void Socket_System::Broadcast( char* sendPacket )
+void Socket_System::Broadcast( unsigned char* sendPacket )
 {
 	for ( auto& client : _connectClients )
 	{
 		Send(client, sendPacket);
-	}
-}
-
-void Socket_System::Send( PSocketContext socketContext, std::stringstream& message )
-{
-	DWORD sendBytes;
-	DWORD flags = 0;
-
-	memcpy(socketContext->messageBuffer, (CHAR*)message.str().c_str(), message.str().length());
-	socketContext->dataBuffer.buf = socketContext->messageBuffer;
-	socketContext->dataBuffer.len = message.str().length();
-	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
-}
-
-void Socket_System::Broadcast( std::stringstream& message )
-{
-	for ( auto& client : _connectClients )
-	{
-		Send(client, message);
 	}
 }

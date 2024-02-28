@@ -1,12 +1,12 @@
 namespace TH_Server.TH_Packet;
 
-enum Server:byte {
+enum EServer:byte {
     Server_1,
     Server_2,
     Server_END,
 }
 
-enum Chat:byte {
+enum EChat:byte {
     World,
     Channel,
     General,
@@ -19,7 +19,7 @@ table LOGIN_DATA {
 
 table CHAT_DATA {
     target:string;
-    chat_type:Chat;
+    chat_type:EChat;
     message:string;
 }
 
@@ -46,7 +46,7 @@ struct Vector3 {
 
 table Protocol {
     clientid:string;
-    server:Server;
+    server:EServer;
     channel:int;
     packet:[Packet];
 }

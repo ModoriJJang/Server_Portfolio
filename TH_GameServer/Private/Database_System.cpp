@@ -29,3 +29,8 @@ void Database_System::Destroy()
 {
 	mysql_close( _mysql );
 }
+
+bool Database_System::Token_Verify( std::string clientID, std::string token )
+{
+	return true;
+}
