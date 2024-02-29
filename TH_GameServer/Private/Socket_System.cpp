@@ -70,7 +70,9 @@ void Socket_System::CreateSocket()
 	CreateIoCompletionPort((HANDLE)_listenSocket, _completionPort, NULL, NULL);
 
 	SOCKADDR_IN serverAddress;
+	ZeroMemory( &serverAddress, sizeof( SOCKADDR_IN ) );
 	serverAddress.sin_family = AF_INET;
+	//inet_pton( AF_INET, "127.0.0.1", &serverAddress.sin_addr );
 	serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);
 	serverAddress.sin_port = htons(1234);
 
@@ -179,23 +181,29 @@ void Socket_System::Recv()
 			clientKey->wsaOverlapped = overlapped;
 			clientKey->dataBuffer.len = 4096;
 			clientKey->dataBuffer.buf = clientKey->messageBuffer;
+			clientKey->IoState = IO_Accept;
 			CreateIoCompletionPort((HANDLE)_acceptSocket, _completionPort, (ULONG_PTR)clientKey, NULL);
-			
+			printf("[System Info] 클라이언트 생성 : %d\n", clientKey->socket);
 		}
 
 		if (result == FALSE && byte == 0)
 		{
 			printf("[System Info] 클라이언트 연결 종료 : %d\n", clientKey->socket);
+			
+			closesocket(clientKey->socket);
 
 			if ( clientKey->IoState > IO_Login )
 			{
 				_connectClients.erase(clientKey);
 			}
+
+			Game_System::GetInstance().Remove_Player_In_Server( clientKey->ClientId );
+
+			delete clientKey;
+			clientKey = nullptr;
+
 			
 
-			closesocket(clientKey->socket);
-			
-			Game_System::GetInstance().Remove_Player_In_Server( clientKey->ClientId );
 			continue;
 		}
 
@@ -203,12 +211,14 @@ void Socket_System::Recv()
 		{
 			case IO_Accept:
 			{
-				clientKey->IoState = IO_Login;
-
-				printf("[Thread] : %i / [Socket] : %i\n", std::this_thread::get_id(), clientKey->socket);
+				clientKey->IoState = IO_None;
 
 				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
-				clientKey->ClientId = Game_System::GetInstance().Add_Player_In_Server();
+
+				clientKey->IoState = IO_Login;
+
+				printf("[Thread] : %i / [Socket] [IO_Accept] : %i\n", std::this_thread::get_id(), clientKey->socket);
+
 				_acceptSocket = WSASocketW(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
 				if (_acceptSocket == INVALID_SOCKET)
 				{
@@ -218,14 +228,15 @@ void Socket_System::Recv()
 					return;
 				}
 
-				ZeroMemory(&overlapped, sizeof(overlapped));
+				WSAOVERLAPPED wsaoverlapped;
+				ZeroMemory(&wsaoverlapped, sizeof(wsaoverlapped));
 				char outputBuffer[4096];
 
 				// 비동기 Accept 대기 시작
 				if (_fnAcceptEx( _listenSocket, _acceptSocket, &outputBuffer,
 					NULL,
 					sizeof( SOCKADDR_IN ) + 16, sizeof( SOCKADDR_IN ) + 16,
-					NULL, &overlapped ) 
+					NULL, &wsaoverlapped ) 
 					&& WSAGetLastError() != WSA_IO_PENDING) // WSA_IO_PENDING 겹치는 작업 추후 완료 예정 (에러아님)
 				{
 					printf("[System Info] 클라이언트 연결 실패");
@@ -239,21 +250,26 @@ void Socket_System::Recv()
 			}
 			case IO_Login:
 			{
-				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
-				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
+				clientKey->IoState = IO_None;
+
+				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, nullptr);
+				printf("[Thread] : %i / [Socket] [IO_Login] : %i\n", std::this_thread::get_id(), clientKey->socket);
 
 				Packet_System::GetInstance().ReceivePacket( clientKey, clientKey->messageBuffer);
 
 				_connectClients.insert(clientKey);
-				clientKey->IoState = IO_Recv;
+
 				break;
 			}
 			case IO_Recv:
 			{
-				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, NULL);
+				clientKey->IoState = IO_None;
+				WSARecv(clientKey->socket, &clientKey->dataBuffer, 1, NULL, &flags, &clientKey->wsaOverlapped, nullptr);
 				printf("[Thread] : %i / %i\n", std::this_thread::get_id(), clientKey->socket);
 
 				Packet_System::GetInstance().ReceivePacket( clientKey, clientKey->messageBuffer);
+
+				clientKey->IoState = IO_Recv;
 
 				break;
 			}
@@ -267,12 +283,31 @@ void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacke
 	DWORD flags = 0;
 	ULONG lenght = 4096;
 
-	/*memcpy(socketContext->messageBuffer, sendPacket, lenght);
-	socketContext->dataBuffer.buf = socketContext->messageBuffer;*/
-	//memcpy(socketContext->messageBuffer, sendPacket, lenght);
-	socketContext->dataBuffer.buf = (char*)sendPacket;
-	socketContext->dataBuffer.len = 4096;
-	WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
+	WSABUF buffer;
+	buffer.buf = (char*) sendPacket;
+	buffer.len = 4096;
+
+	//socketContext->dataBuffer.buf = socketContext->messageBuffer;
+	//memcpy(socketContext->messageBuffer, (char*)sendPacket, 4096);
+	//socketContext->messageBuffer = (char*)sendPacket;
+
+	/*socketContext->dataBuffer.buf = (char*)sendPacket;
+	socketContext->dataBuffer.len = 4096;*/
+	//int result = WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
+	int result = WSASend(socketContext->socket, &buffer, 1, &sendBytes, flags, nullptr, nullptr);
+
+	printf("[Thread] : %i / [Socket] [Send] : %i [Result] : %d\n", std::this_thread::get_id(), socketContext->socket, result);
+
+	if ( result == -1 )
+	{
+		socketContext->IoState = IO_Login;
+		std::cout << WSAGetLastError() << std::endl;
+		//result = WSASend(socketContext->socket, &buffer, 1, &sendBytes, flags, nullptr, nullptr);
+	}
+	else
+	{
+		socketContext->IoState = IO_Recv;
+	}
 }
 
 void Socket_System::Broadcast( unsigned char* sendPacket )

@@ -90,7 +90,11 @@ void Packet_System::ReceivePacket(PSocketContext client, char* recvPacket)
 
 void Packet_System::SendPacket( PSocketContext client, std::vector<flatbuffers::Offset<Packet>>& packets )
 {
-	
+	flatbuffers::FlatBufferBuilder builder( 4096 );
+	auto clientProtocol = CreateProtocol( builder, builder.CreateString("Server"), EServer_MIN, 0, builder.CreateVector(packets));
+	builder.Finish( clientProtocol );
+
+	Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
 }
 
 void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
@@ -130,6 +134,8 @@ void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* 
 	builder.Finish( clientProtocol );
 
 	Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
+
+	builder.Release();
 
 	//GetInstance().SendPacket( client, packets );
 	//Game_System::GetInstance().Add_Player_In_Server();

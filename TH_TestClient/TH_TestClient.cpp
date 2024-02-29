@@ -21,13 +21,25 @@ using namespace std;
 
 using namespace TH_Server::TH_Packet;
 
+bool connectCheck = false;
+
 static void ReceiveMessage(SOCKET serverSocket)
 {
 	char recvData[4096] = { 0, };
 	while (true)
 	{
+		cout << "패킷 수신 시작" << endl;
 		recv(serverSocket, recvData, 4096, NULL);
+		cout << "패킷 수신 끝" << endl;
 
+		auto temp = GetProtocol(recvData);
+		std::string server = temp->clientid()->str();
+
+		cout << "로그인 성공" << endl;
+
+		connectCheck = true;
+
+		cout << server << endl;
 	}
 
 	return;
@@ -35,13 +47,13 @@ static void ReceiveMessage(SOCKET serverSocket)
 
 int main()
 {
-    WSADATA wsaData;
-	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != ERROR_SUCCESS)
+	WSADATA wsaData;
+	if ( WSAStartup( MAKEWORD( 2, 2 ), &wsaData ) != ERROR_SUCCESS )
 		return -1;
 
 	SOCKET serverSocket;
-	serverSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-	if (serverSocket == INVALID_SOCKET)
+	serverSocket = socket( PF_INET, SOCK_STREAM, IPPROTO_TCP );
+	if ( serverSocket == INVALID_SOCKET )
 	{
 		WSACleanup();
 		return -1;
@@ -49,52 +61,69 @@ int main()
 
 	SOCKADDR_IN serverAddress;
 	serverAddress.sin_family = AF_INET;
-	serverAddress.sin_addr.s_addr = inet_addr(SERVER_IP);
-	serverAddress.sin_port = htons(SERVER_PORT);
+	serverAddress.sin_addr.s_addr = inet_addr( SERVER_IP );
+	serverAddress.sin_port = htons( SERVER_PORT );
 
-	int connectResult = connect(serverSocket, (LPSOCKADDR)&serverAddress, sizeof(serverAddress));
+	int connectResult = connect( serverSocket, (LPSOCKADDR) &serverAddress, sizeof( serverAddress ) );
 
-	if (connectResult != ERROR_SUCCESS)
+	if ( connectResult != ERROR_SUCCESS )
 	{
 		cout << "서버연결실패" << endl;
-		closesocket(serverSocket);
+		closesocket( serverSocket );
 		WSACleanup();
 		return -1;
 	}
 	cout << "서버연결성공" << endl;
 
+	thread recvThread( ReceiveMessage, serverSocket );
+
 	flatbuffers::FlatBufferBuilder builder( 4096 );
-	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token1")).Union());
+	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA( builder, builder.CreateString( "token1" ) ).Union() );
 
 	builder.Finish( packet1 );
 
 	std::vector<flatbuffers::Offset<Packet>> packets;
-	packets.emplace_back(packet1);
+	packets.emplace_back( packet1 );
 
 
-	auto protocol = CreateProtocol( builder, builder.CreateString("test"), EServer_Server_1, 1, builder.CreateVector(packets));
+	auto protocol = CreateProtocol( builder, builder.CreateString( "client1" ), EServer_Server_1, 1, builder.CreateVector( packets ) );
 	builder.Finish( protocol );
 
 	auto sendPacket = builder.GetBufferPointer();
+
+
+	while ( connectCheck == false )
+	{
+		DWORD flags = 0;
+		cout << "패킷 전송 시작" << endl;
+		int result = -1;
+		while ( result == -1 )
+		{
+			result = send( serverSocket, (char*)sendPacket, 4096, 0 );
+			cout << result << endl;
+			cout << WSAGetLastError() << endl;
+		
+		}
+		cout << "패킷 전송 끝" << endl;
+
+		Sleep( 3000 );
+	}
 	
 
-	DWORD flags = 0;
+	
 
-	send( serverSocket, (char*)sendPacket, 4096, 0 );
 
-	char recvData[4096] = { 0, };
-	recv(serverSocket, recvData, 4096, NULL);
+	//char recvData[4096] = { 0, };
+	//cout << "패킷 수신 시작" << endl;
 
-	auto temp = GetProtocol(recvData);
-	std::string test = temp->clientid()->str();
-
-	cout << "로그인 성공" << endl;
-
-	cout << test << endl;
+	//recv(serverSocket, recvData, 4096, NULL);
+	//cout << "패킷 수신 끝" << endl;
+	
 
 	int a = 0;
 	while (true)
 	{
+
 	}
 
 }

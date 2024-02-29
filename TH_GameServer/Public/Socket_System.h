@@ -12,6 +12,7 @@
 
 typedef enum _IO_State
 {
+	IO_None,
 	IO_Accept,
 	IO_Login,
 	IO_Recv,
