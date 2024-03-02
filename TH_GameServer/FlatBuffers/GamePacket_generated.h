@@ -19,6 +19,9 @@ namespace TH_Packet {
 struct LOGIN_DATA;
 struct LOGIN_DATABuilder;
 
+struct SPAWN_DATA;
+struct SPAWN_DATABuilder;
+
 struct CHAT_DATA;
 struct CHAT_DATABuilder;
 
@@ -108,17 +111,19 @@ inline const char *EnumNameEChat(EChat e) {
 enum PacketData : uint8_t {
   PacketData_NONE = 0,
   PacketData_LOGIN = 1,
-  PacketData_CHAT = 2,
-  PacketData_PLAYER = 3,
-  PacketData_MONSTER = 4,
+  PacketData_SPAWN = 2,
+  PacketData_CHAT = 3,
+  PacketData_PLAYER = 4,
+  PacketData_MONSTER = 5,
   PacketData_MIN = PacketData_NONE,
   PacketData_MAX = PacketData_MONSTER
 };
 
-inline const PacketData (&EnumValuesPacketData())[5] {
+inline const PacketData (&EnumValuesPacketData())[6] {
   static const PacketData values[] = {
     PacketData_NONE,
     PacketData_LOGIN,
+    PacketData_SPAWN,
     PacketData_CHAT,
     PacketData_PLAYER,
     PacketData_MONSTER
@@ -127,9 +132,10 @@ inline const PacketData (&EnumValuesPacketData())[5] {
 }
 
 inline const char * const *EnumNamesPacketData() {
-  static const char * const names[6] = {
+  static const char * const names[7] = {
     "NONE",
     "LOGIN",
+    "SPAWN",
     "CHAT",
     "PLAYER",
     "MONSTER",
@@ -150,6 +156,10 @@ template<typename T> struct PacketDataTraits {
 
 template<> struct PacketDataTraits<TH_Server::TH_Packet::LOGIN_DATA> {
   static const PacketData enum_value = PacketData_LOGIN;
+};
+
+template<> struct PacketDataTraits<TH_Server::TH_Packet::SPAWN_DATA> {
+  static const PacketData enum_value = PacketData_SPAWN;
 };
 
 template<> struct PacketDataTraits<TH_Server::TH_Packet::CHAT_DATA> {
@@ -247,6 +257,95 @@ inline ::flatbuffers::Offset<LOGIN_DATA> CreateLOGIN_DATADirect(
       token__);
 }
 
+struct SPAWN_DATA FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SPAWN_DATABuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_OWNER = 4,
+    VT_NETWORKID = 6,
+    VT_POSITION = 8,
+    VT_OBJECTTYPE = 10
+  };
+  const ::flatbuffers::String *owner() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_OWNER);
+  }
+  int32_t networkid() const {
+    return GetField<int32_t>(VT_NETWORKID, 0);
+  }
+  const TH_Server::TH_Packet::Vector3 *position() const {
+    return GetStruct<const TH_Server::TH_Packet::Vector3 *>(VT_POSITION);
+  }
+  const ::flatbuffers::String *objecttype() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_OBJECTTYPE);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_OWNER) &&
+           verifier.VerifyString(owner()) &&
+           VerifyField<int32_t>(verifier, VT_NETWORKID, 4) &&
+           VerifyField<TH_Server::TH_Packet::Vector3>(verifier, VT_POSITION, 4) &&
+           VerifyOffset(verifier, VT_OBJECTTYPE) &&
+           verifier.VerifyString(objecttype()) &&
+           verifier.EndTable();
+  }
+};
+
+struct SPAWN_DATABuilder {
+  typedef SPAWN_DATA Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_owner(::flatbuffers::Offset<::flatbuffers::String> owner) {
+    fbb_.AddOffset(SPAWN_DATA::VT_OWNER, owner);
+  }
+  void add_networkid(int32_t networkid) {
+    fbb_.AddElement<int32_t>(SPAWN_DATA::VT_NETWORKID, networkid, 0);
+  }
+  void add_position(const TH_Server::TH_Packet::Vector3 *position) {
+    fbb_.AddStruct(SPAWN_DATA::VT_POSITION, position);
+  }
+  void add_objecttype(::flatbuffers::Offset<::flatbuffers::String> objecttype) {
+    fbb_.AddOffset(SPAWN_DATA::VT_OBJECTTYPE, objecttype);
+  }
+  explicit SPAWN_DATABuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SPAWN_DATA> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SPAWN_DATA>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SPAWN_DATA> CreateSPAWN_DATA(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> owner = 0,
+    int32_t networkid = 0,
+    const TH_Server::TH_Packet::Vector3 *position = nullptr,
+    ::flatbuffers::Offset<::flatbuffers::String> objecttype = 0) {
+  SPAWN_DATABuilder builder_(_fbb);
+  builder_.add_objecttype(objecttype);
+  builder_.add_position(position);
+  builder_.add_networkid(networkid);
+  builder_.add_owner(owner);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<SPAWN_DATA> CreateSPAWN_DATADirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *owner = nullptr,
+    int32_t networkid = 0,
+    const TH_Server::TH_Packet::Vector3 *position = nullptr,
+    const char *objecttype = nullptr) {
+  auto owner__ = owner ? _fbb.CreateString(owner) : 0;
+  auto objecttype__ = objecttype ? _fbb.CreateString(objecttype) : 0;
+  return TH_Server::TH_Packet::CreateSPAWN_DATA(
+      _fbb,
+      owner__,
+      networkid,
+      position,
+      objecttype__);
+}
+
 struct CHAT_DATA FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef CHAT_DATABuilder Builder;
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -327,13 +426,24 @@ inline ::flatbuffers::Offset<CHAT_DATA> CreateCHAT_DATADirect(
 struct PLAYER_DATA FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef PLAYER_DATABuilder Builder;
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
-    VT_POSITION = 4
+    VT_OWNER = 4,
+    VT_NETWORKID = 6,
+    VT_POSITION = 8
   };
+  const ::flatbuffers::String *owner() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_OWNER);
+  }
+  int32_t networkid() const {
+    return GetField<int32_t>(VT_NETWORKID, 0);
+  }
   const TH_Server::TH_Packet::Vector3 *position() const {
     return GetStruct<const TH_Server::TH_Packet::Vector3 *>(VT_POSITION);
   }
   bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_OWNER) &&
+           verifier.VerifyString(owner()) &&
+           VerifyField<int32_t>(verifier, VT_NETWORKID, 4) &&
            VerifyField<TH_Server::TH_Packet::Vector3>(verifier, VT_POSITION, 4) &&
            verifier.EndTable();
   }
@@ -343,6 +453,12 @@ struct PLAYER_DATABuilder {
   typedef PLAYER_DATA Table;
   ::flatbuffers::FlatBufferBuilder &fbb_;
   ::flatbuffers::uoffset_t start_;
+  void add_owner(::flatbuffers::Offset<::flatbuffers::String> owner) {
+    fbb_.AddOffset(PLAYER_DATA::VT_OWNER, owner);
+  }
+  void add_networkid(int32_t networkid) {
+    fbb_.AddElement<int32_t>(PLAYER_DATA::VT_NETWORKID, networkid, 0);
+  }
   void add_position(const TH_Server::TH_Packet::Vector3 *position) {
     fbb_.AddStruct(PLAYER_DATA::VT_POSITION, position);
   }
@@ -359,10 +475,27 @@ struct PLAYER_DATABuilder {
 
 inline ::flatbuffers::Offset<PLAYER_DATA> CreatePLAYER_DATA(
     ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> owner = 0,
+    int32_t networkid = 0,
     const TH_Server::TH_Packet::Vector3 *position = nullptr) {
   PLAYER_DATABuilder builder_(_fbb);
   builder_.add_position(position);
+  builder_.add_networkid(networkid);
+  builder_.add_owner(owner);
   return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<PLAYER_DATA> CreatePLAYER_DATADirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *owner = nullptr,
+    int32_t networkid = 0,
+    const TH_Server::TH_Packet::Vector3 *position = nullptr) {
+  auto owner__ = owner ? _fbb.CreateString(owner) : 0;
+  return TH_Server::TH_Packet::CreatePLAYER_DATA(
+      _fbb,
+      owner__,
+      networkid,
+      position);
 }
 
 struct MONSTER_DATA FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
@@ -512,6 +645,9 @@ struct Packet FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const TH_Server::TH_Packet::LOGIN_DATA *data_as_LOGIN() const {
     return data_type() == TH_Server::TH_Packet::PacketData_LOGIN ? static_cast<const TH_Server::TH_Packet::LOGIN_DATA *>(data()) : nullptr;
   }
+  const TH_Server::TH_Packet::SPAWN_DATA *data_as_SPAWN() const {
+    return data_type() == TH_Server::TH_Packet::PacketData_SPAWN ? static_cast<const TH_Server::TH_Packet::SPAWN_DATA *>(data()) : nullptr;
+  }
   const TH_Server::TH_Packet::CHAT_DATA *data_as_CHAT() const {
     return data_type() == TH_Server::TH_Packet::PacketData_CHAT ? static_cast<const TH_Server::TH_Packet::CHAT_DATA *>(data()) : nullptr;
   }
@@ -532,6 +668,10 @@ struct Packet FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
 
 template<> inline const TH_Server::TH_Packet::LOGIN_DATA *Packet::data_as<TH_Server::TH_Packet::LOGIN_DATA>() const {
   return data_as_LOGIN();
+}
+
+template<> inline const TH_Server::TH_Packet::SPAWN_DATA *Packet::data_as<TH_Server::TH_Packet::SPAWN_DATA>() const {
+  return data_as_SPAWN();
 }
 
 template<> inline const TH_Server::TH_Packet::CHAT_DATA *Packet::data_as<TH_Server::TH_Packet::CHAT_DATA>() const {
@@ -584,6 +724,10 @@ inline bool VerifyPacketData(::flatbuffers::Verifier &verifier, const void *obj,
     }
     case PacketData_LOGIN: {
       auto ptr = reinterpret_cast<const TH_Server::TH_Packet::LOGIN_DATA *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PacketData_SPAWN: {
+      auto ptr = reinterpret_cast<const TH_Server::TH_Packet::SPAWN_DATA *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case PacketData_CHAT: {

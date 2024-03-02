@@ -11,6 +11,9 @@ public:
 	void Destroy();
 
 public:
-	std::string _ID;
+	std::string _ClientID;
+	float _x;
+	float _y;
+	float _z;
 };
 

@@ -54,6 +54,11 @@ void Game_System::Create_Worlds_Thread()
             thread.join();
 }
 
+Player Game_System::Get_Player(int server, int channel)
+{
+	return Player();
+}
+
 int Game_System::Add_Player_In_Server()
 {
 	/*Player* player = new Player();

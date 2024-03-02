@@ -23,6 +23,8 @@ public:
 	void Create_Worlds();
 	void Create_Worlds_Thread();
 
+	Player Get_Player(int server, int channel);
+
 	int Add_Player_In_Server();
 	void Remove_Player_In_Server( int PlayerId );
 

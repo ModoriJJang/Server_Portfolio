@@ -17,6 +17,14 @@ table LOGIN_DATA {
     token:string;
 }
 
+table SPAWN_DATA {
+    owner:string;
+    networkid:int;
+    position:Vector3;
+    objecttype:string;
+}
+
+
 table CHAT_DATA {
     target:string;
     chat_type:EChat;
@@ -24,6 +32,8 @@ table CHAT_DATA {
 }
 
 table PLAYER_DATA {
+    owner:string;
+    networkid:int;
     position:Vector3;
 }
 
@@ -33,6 +43,7 @@ table MONSTER_DATA {
 
 union PacketData {
     LOGIN:LOGIN_DATA,
+    SPAWN:SPAWN_DATA,
     CHAT:CHAT_DATA,
     PLAYER:PLAYER_DATA,
     MONSTER:MONSTER_DATA,

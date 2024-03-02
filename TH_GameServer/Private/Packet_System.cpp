@@ -146,7 +146,14 @@ void Packet_System::Chat_PacketProcess( PSocketContext client, const Protocol* p
 	auto data = (CHAT_DATA*) packet;
 }
 
-void Packet_System::Player_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet )
+void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* protocol, const void* packet)
 {
-	auto data = (PLAYER_DATA*) packet;
+	protocol->server();
+	protocol->channel();
+	auto data = (PLAYER_DATA*)packet;
+	data->networkid();
+	data->position()->x();
+	data->position()->y();
+	data->position()->z();
 }
+
