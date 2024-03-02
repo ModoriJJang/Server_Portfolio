@@ -277,7 +277,7 @@ void Socket_System::Recv()
 	}
 }
 
-void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacket )
+void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacket, int len)
 {
 	DWORD sendBytes;
 	DWORD flags = 0;
@@ -285,7 +285,7 @@ void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacke
 
 	WSABUF buffer;
 	buffer.buf = (char*) sendPacket;
-	buffer.len = 4096;
+	buffer.len = len;
 
 	//socketContext->dataBuffer.buf = socketContext->messageBuffer;
 	//memcpy(socketContext->messageBuffer, (char*)sendPacket, 4096);
@@ -310,10 +310,10 @@ void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacke
 	}
 }
 
-void Socket_System::Broadcast( unsigned char* sendPacket )
+void Socket_System::Broadcast( unsigned char* sendPacket, int len)
 {
 	for ( auto& client : _connectClients )
 	{
-		Send(client, sendPacket);
+		Send(client, sendPacket, len);
 	}
 }

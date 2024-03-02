@@ -50,8 +50,8 @@ private:
 
 public:
 	void Recv();
-	void Send(PSocketContext socketContext, unsigned char* sendPacket);
-	void Broadcast( unsigned char* sendPacket );
+	void Send(PSocketContext socketContext, unsigned char* sendPacket, int len);
+	void Broadcast( unsigned char* sendPacket, int len);
 
 private:
 	int _workerThreadCount = 0;

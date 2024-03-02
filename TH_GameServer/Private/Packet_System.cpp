@@ -94,7 +94,7 @@ void Packet_System::SendPacket( PSocketContext client, std::vector<flatbuffers::
 	auto clientProtocol = CreateProtocol( builder, builder.CreateString("Server"), EServer_MIN, 0, builder.CreateVector(packets));
 	builder.Finish( clientProtocol );
 
-	Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
+	//Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
 }
 
 void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
@@ -133,7 +133,7 @@ void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* 
 	auto clientProtocol = CreateProtocol( builder, builder.CreateString("Server"), EServer_MIN, 0, builder.CreateVector(packets));
 	builder.Finish( clientProtocol );
 
-	Socket_System::GetInstance().Send( client, builder.GetBufferPointer() );
+	Socket_System::GetInstance().Send( client, builder.GetBufferPointer(), builder.GetSize() );
 
 	builder.Release();
 
