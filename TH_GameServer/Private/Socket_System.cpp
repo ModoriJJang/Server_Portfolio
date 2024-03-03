@@ -185,6 +185,25 @@ void Socket_System::Recv()
 			CreateIoCompletionPort((HANDLE)_acceptSocket, _completionPort, (ULONG_PTR)clientKey, NULL);
 			printf("[System Info] 클라이언트 생성 : %d\n", clientKey->socket);
 		}
+		else if(byte == 0 ){
+			printf("[System Info] 클라이언트 연결 종료 : %d\n", clientKey->socket);
+
+			closesocket(clientKey->socket);
+
+			if (clientKey->IoState > IO_Login)
+			{
+				_connectClients.erase(clientKey);
+			}
+
+			Game_System::GetInstance().Remove_Player_In_Server(clientKey->ClientId);
+
+			delete clientKey;
+			clientKey = nullptr;
+
+
+
+			continue;
+		}
 
 		if (result == FALSE && byte == 0)
 		{
