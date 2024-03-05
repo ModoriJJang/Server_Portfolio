@@ -29,7 +29,6 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -46,65 +45,39 @@ struct TableStruct_Packet_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Packet_2eproto;
 namespace TH_SERVER {
-class PACKET;
-struct PACKETDefaultTypeInternal;
-extern PACKETDefaultTypeInternal _PACKET_default_instance_;
-class TH_PACKET;
-struct TH_PACKETDefaultTypeInternal;
-extern TH_PACKETDefaultTypeInternal _TH_PACKET_default_instance_;
+class Login_Recv;
+struct Login_RecvDefaultTypeInternal;
+extern Login_RecvDefaultTypeInternal _Login_Recv_default_instance_;
+class Login_Send;
+struct Login_SendDefaultTypeInternal;
+extern Login_SendDefaultTypeInternal _Login_Send_default_instance_;
 }  // namespace TH_SERVER
 PROTOBUF_NAMESPACE_OPEN
-template<> ::TH_SERVER::PACKET* Arena::CreateMaybeMessage<::TH_SERVER::PACKET>(Arena*);
-template<> ::TH_SERVER::TH_PACKET* Arena::CreateMaybeMessage<::TH_SERVER::TH_PACKET>(Arena*);
+template<> ::TH_SERVER::Login_Recv* Arena::CreateMaybeMessage<::TH_SERVER::Login_Recv>(Arena*);
+template<> ::TH_SERVER::Login_Send* Arena::CreateMaybeMessage<::TH_SERVER::Login_Send>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace TH_SERVER {
 
-enum PACKET_TYPE : int {
-  CHAT = 0,
-  PLAYER = 1,
-  MONSTER = 2,
-  PACKET_TYPE_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  PACKET_TYPE_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool PACKET_TYPE_IsValid(int value);
-constexpr PACKET_TYPE PACKET_TYPE_MIN = CHAT;
-constexpr PACKET_TYPE PACKET_TYPE_MAX = MONSTER;
-constexpr int PACKET_TYPE_ARRAYSIZE = PACKET_TYPE_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PACKET_TYPE_descriptor();
-template<typename T>
-inline const std::string& PACKET_TYPE_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, PACKET_TYPE>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function PACKET_TYPE_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    PACKET_TYPE_descriptor(), enum_t_value);
-}
-inline bool PACKET_TYPE_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PACKET_TYPE* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PACKET_TYPE>(
-    PACKET_TYPE_descriptor(), name, value);
-}
 // ===================================================================
 
-class PACKET final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TH_SERVER.PACKET) */ {
+class Login_Send final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TH_SERVER.Login_Send) */ {
  public:
-  inline PACKET() : PACKET(nullptr) {}
-  ~PACKET() override;
-  explicit PROTOBUF_CONSTEXPR PACKET(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline Login_Send() : Login_Send(nullptr) {}
+  ~Login_Send() override;
+  explicit PROTOBUF_CONSTEXPR Login_Send(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  PACKET(const PACKET& from);
-  PACKET(PACKET&& from) noexcept
-    : PACKET() {
+  Login_Send(const Login_Send& from);
+  Login_Send(Login_Send&& from) noexcept
+    : Login_Send() {
     *this = ::std::move(from);
   }
 
-  inline PACKET& operator=(const PACKET& from) {
+  inline Login_Send& operator=(const Login_Send& from) {
     CopyFrom(from);
     return *this;
   }
-  inline PACKET& operator=(PACKET&& from) noexcept {
+  inline Login_Send& operator=(Login_Send&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -127,20 +100,20 @@ class PACKET final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const PACKET& default_instance() {
+  static const Login_Send& default_instance() {
     return *internal_default_instance();
   }
-  static inline const PACKET* internal_default_instance() {
-    return reinterpret_cast<const PACKET*>(
-               &_PACKET_default_instance_);
+  static inline const Login_Send* internal_default_instance() {
+    return reinterpret_cast<const Login_Send*>(
+               &_Login_Send_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(PACKET& a, PACKET& b) {
+  friend void swap(Login_Send& a, Login_Send& b) {
     a.Swap(&b);
   }
-  inline void Swap(PACKET* other) {
+  inline void Swap(Login_Send* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -153,7 +126,7 @@ class PACKET final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(PACKET* other) {
+  void UnsafeArenaSwap(Login_Send* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -161,14 +134,14 @@ class PACKET final :
 
   // implements Message ----------------------------------------------
 
-  PACKET* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<PACKET>(arena);
+  Login_Send* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Login_Send>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const PACKET& from);
+  void CopyFrom(const Login_Send& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const PACKET& from) {
-    PACKET::MergeImpl(*this, from);
+  void MergeFrom( const Login_Send& from) {
+    Login_Send::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -186,15 +159,15 @@ class PACKET final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(PACKET* other);
+  void InternalSwap(Login_Send* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "TH_SERVER.PACKET";
+    return "TH_SERVER.Login_Send";
   }
   protected:
-  explicit PACKET(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit Login_Send(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -208,191 +181,9 @@ class PACKET final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPacketdataFieldNumber = 2,
-    kPackettypeFieldNumber = 1,
-  };
-  // string packetdata = 2;
-  void clear_packetdata();
-  const std::string& packetdata() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_packetdata(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_packetdata();
-  PROTOBUF_NODISCARD std::string* release_packetdata();
-  void set_allocated_packetdata(std::string* packetdata);
-  private:
-  const std::string& _internal_packetdata() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_packetdata(const std::string& value);
-  std::string* _internal_mutable_packetdata();
-  public:
-
-  // .TH_SERVER.PACKET_TYPE packettype = 1;
-  void clear_packettype();
-  ::TH_SERVER::PACKET_TYPE packettype() const;
-  void set_packettype(::TH_SERVER::PACKET_TYPE value);
-  private:
-  ::TH_SERVER::PACKET_TYPE _internal_packettype() const;
-  void _internal_set_packettype(::TH_SERVER::PACKET_TYPE value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:TH_SERVER.PACKET)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr packetdata_;
-    int packettype_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_Packet_2eproto;
-};
-// -------------------------------------------------------------------
-
-class TH_PACKET final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TH_SERVER.TH_PACKET) */ {
- public:
-  inline TH_PACKET() : TH_PACKET(nullptr) {}
-  ~TH_PACKET() override;
-  explicit PROTOBUF_CONSTEXPR TH_PACKET(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  TH_PACKET(const TH_PACKET& from);
-  TH_PACKET(TH_PACKET&& from) noexcept
-    : TH_PACKET() {
-    *this = ::std::move(from);
-  }
-
-  inline TH_PACKET& operator=(const TH_PACKET& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TH_PACKET& operator=(TH_PACKET&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const TH_PACKET& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const TH_PACKET* internal_default_instance() {
-    return reinterpret_cast<const TH_PACKET*>(
-               &_TH_PACKET_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(TH_PACKET& a, TH_PACKET& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TH_PACKET* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(TH_PACKET* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  TH_PACKET* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<TH_PACKET>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const TH_PACKET& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const TH_PACKET& from) {
-    TH_PACKET::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TH_PACKET* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "TH_SERVER.TH_PACKET";
-  }
-  protected:
-  explicit TH_PACKET(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kPacketFieldNumber = 2,
     kClientidFieldNumber = 1,
+    kTokenFieldNumber = 2,
   };
-  // repeated .TH_SERVER.PACKET packet = 2;
-  int packet_size() const;
-  private:
-  int _internal_packet_size() const;
-  public:
-  void clear_packet();
-  ::TH_SERVER::PACKET* mutable_packet(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TH_SERVER::PACKET >*
-      mutable_packet();
-  private:
-  const ::TH_SERVER::PACKET& _internal_packet(int index) const;
-  ::TH_SERVER::PACKET* _internal_add_packet();
-  public:
-  const ::TH_SERVER::PACKET& packet(int index) const;
-  ::TH_SERVER::PACKET* add_packet();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TH_SERVER::PACKET >&
-      packet() const;
-
   // string clientid = 1;
   void clear_clientid();
   const std::string& clientid() const;
@@ -407,7 +198,21 @@ class TH_PACKET final :
   std::string* _internal_mutable_clientid();
   public:
 
-  // @@protoc_insertion_point(class_scope:TH_SERVER.TH_PACKET)
+  // string token = 2;
+  void clear_token();
+  const std::string& token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_token();
+  PROTOBUF_NODISCARD std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
+  // @@protoc_insertion_point(class_scope:TH_SERVER.Login_Send)
  private:
   class _Internal;
 
@@ -415,8 +220,161 @@ class TH_PACKET final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TH_SERVER::PACKET > packet_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr clientid_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Packet_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Login_Recv final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TH_SERVER.Login_Recv) */ {
+ public:
+  inline Login_Recv() : Login_Recv(nullptr) {}
+  ~Login_Recv() override;
+  explicit PROTOBUF_CONSTEXPR Login_Recv(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Login_Recv(const Login_Recv& from);
+  Login_Recv(Login_Recv&& from) noexcept
+    : Login_Recv() {
+    *this = ::std::move(from);
+  }
+
+  inline Login_Recv& operator=(const Login_Recv& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Login_Recv& operator=(Login_Recv&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Login_Recv& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Login_Recv* internal_default_instance() {
+    return reinterpret_cast<const Login_Recv*>(
+               &_Login_Recv_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(Login_Recv& a, Login_Recv& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Login_Recv* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Login_Recv* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Login_Recv* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Login_Recv>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Login_Recv& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Login_Recv& from) {
+    Login_Recv::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Login_Recv* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "TH_SERVER.Login_Recv";
+  }
+  protected:
+  explicit Login_Recv(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 1,
+  };
+  // string message = 1;
+  void clear_message();
+  const std::string& message() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_message(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // @@protoc_insertion_point(class_scope:TH_SERVER.Login_Recv)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -431,118 +389,44 @@ class TH_PACKET final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// PACKET
-
-// .TH_SERVER.PACKET_TYPE packettype = 1;
-inline void PACKET::clear_packettype() {
-  _impl_.packettype_ = 0;
-}
-inline ::TH_SERVER::PACKET_TYPE PACKET::_internal_packettype() const {
-  return static_cast< ::TH_SERVER::PACKET_TYPE >(_impl_.packettype_);
-}
-inline ::TH_SERVER::PACKET_TYPE PACKET::packettype() const {
-  // @@protoc_insertion_point(field_get:TH_SERVER.PACKET.packettype)
-  return _internal_packettype();
-}
-inline void PACKET::_internal_set_packettype(::TH_SERVER::PACKET_TYPE value) {
-  
-  _impl_.packettype_ = value;
-}
-inline void PACKET::set_packettype(::TH_SERVER::PACKET_TYPE value) {
-  _internal_set_packettype(value);
-  // @@protoc_insertion_point(field_set:TH_SERVER.PACKET.packettype)
-}
-
-// string packetdata = 2;
-inline void PACKET::clear_packetdata() {
-  _impl_.packetdata_.ClearToEmpty();
-}
-inline const std::string& PACKET::packetdata() const {
-  // @@protoc_insertion_point(field_get:TH_SERVER.PACKET.packetdata)
-  return _internal_packetdata();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void PACKET::set_packetdata(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.packetdata_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:TH_SERVER.PACKET.packetdata)
-}
-inline std::string* PACKET::mutable_packetdata() {
-  std::string* _s = _internal_mutable_packetdata();
-  // @@protoc_insertion_point(field_mutable:TH_SERVER.PACKET.packetdata)
-  return _s;
-}
-inline const std::string& PACKET::_internal_packetdata() const {
-  return _impl_.packetdata_.Get();
-}
-inline void PACKET::_internal_set_packetdata(const std::string& value) {
-  
-  _impl_.packetdata_.Set(value, GetArenaForAllocation());
-}
-inline std::string* PACKET::_internal_mutable_packetdata() {
-  
-  return _impl_.packetdata_.Mutable(GetArenaForAllocation());
-}
-inline std::string* PACKET::release_packetdata() {
-  // @@protoc_insertion_point(field_release:TH_SERVER.PACKET.packetdata)
-  return _impl_.packetdata_.Release();
-}
-inline void PACKET::set_allocated_packetdata(std::string* packetdata) {
-  if (packetdata != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.packetdata_.SetAllocated(packetdata, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.packetdata_.IsDefault()) {
-    _impl_.packetdata_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.PACKET.packetdata)
-}
-
-// -------------------------------------------------------------------
-
-// TH_PACKET
+// Login_Send
 
 // string clientid = 1;
-inline void TH_PACKET::clear_clientid() {
+inline void Login_Send::clear_clientid() {
   _impl_.clientid_.ClearToEmpty();
 }
-inline const std::string& TH_PACKET::clientid() const {
-  // @@protoc_insertion_point(field_get:TH_SERVER.TH_PACKET.clientid)
+inline const std::string& Login_Send::clientid() const {
+  // @@protoc_insertion_point(field_get:TH_SERVER.Login_Send.clientid)
   return _internal_clientid();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void TH_PACKET::set_clientid(ArgT0&& arg0, ArgT... args) {
+void Login_Send::set_clientid(ArgT0&& arg0, ArgT... args) {
  
  _impl_.clientid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:TH_SERVER.TH_PACKET.clientid)
+  // @@protoc_insertion_point(field_set:TH_SERVER.Login_Send.clientid)
 }
-inline std::string* TH_PACKET::mutable_clientid() {
+inline std::string* Login_Send::mutable_clientid() {
   std::string* _s = _internal_mutable_clientid();
-  // @@protoc_insertion_point(field_mutable:TH_SERVER.TH_PACKET.clientid)
+  // @@protoc_insertion_point(field_mutable:TH_SERVER.Login_Send.clientid)
   return _s;
 }
-inline const std::string& TH_PACKET::_internal_clientid() const {
+inline const std::string& Login_Send::_internal_clientid() const {
   return _impl_.clientid_.Get();
 }
-inline void TH_PACKET::_internal_set_clientid(const std::string& value) {
+inline void Login_Send::_internal_set_clientid(const std::string& value) {
   
   _impl_.clientid_.Set(value, GetArenaForAllocation());
 }
-inline std::string* TH_PACKET::_internal_mutable_clientid() {
+inline std::string* Login_Send::_internal_mutable_clientid() {
   
   return _impl_.clientid_.Mutable(GetArenaForAllocation());
 }
-inline std::string* TH_PACKET::release_clientid() {
-  // @@protoc_insertion_point(field_release:TH_SERVER.TH_PACKET.clientid)
+inline std::string* Login_Send::release_clientid() {
+  // @@protoc_insertion_point(field_release:TH_SERVER.Login_Send.clientid)
   return _impl_.clientid_.Release();
 }
-inline void TH_PACKET::set_allocated_clientid(std::string* clientid) {
+inline void Login_Send::set_allocated_clientid(std::string* clientid) {
   if (clientid != nullptr) {
     
   } else {
@@ -554,47 +438,111 @@ inline void TH_PACKET::set_allocated_clientid(std::string* clientid) {
     _impl_.clientid_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.TH_PACKET.clientid)
+  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.Login_Send.clientid)
 }
 
-// repeated .TH_SERVER.PACKET packet = 2;
-inline int TH_PACKET::_internal_packet_size() const {
-  return _impl_.packet_.size();
+// string token = 2;
+inline void Login_Send::clear_token() {
+  _impl_.token_.ClearToEmpty();
 }
-inline int TH_PACKET::packet_size() const {
-  return _internal_packet_size();
+inline const std::string& Login_Send::token() const {
+  // @@protoc_insertion_point(field_get:TH_SERVER.Login_Send.token)
+  return _internal_token();
 }
-inline void TH_PACKET::clear_packet() {
-  _impl_.packet_.Clear();
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Login_Send::set_token(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TH_SERVER.Login_Send.token)
 }
-inline ::TH_SERVER::PACKET* TH_PACKET::mutable_packet(int index) {
-  // @@protoc_insertion_point(field_mutable:TH_SERVER.TH_PACKET.packet)
-  return _impl_.packet_.Mutable(index);
+inline std::string* Login_Send::mutable_token() {
+  std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:TH_SERVER.Login_Send.token)
+  return _s;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TH_SERVER::PACKET >*
-TH_PACKET::mutable_packet() {
-  // @@protoc_insertion_point(field_mutable_list:TH_SERVER.TH_PACKET.packet)
-  return &_impl_.packet_;
+inline const std::string& Login_Send::_internal_token() const {
+  return _impl_.token_.Get();
 }
-inline const ::TH_SERVER::PACKET& TH_PACKET::_internal_packet(int index) const {
-  return _impl_.packet_.Get(index);
+inline void Login_Send::_internal_set_token(const std::string& value) {
+  
+  _impl_.token_.Set(value, GetArenaForAllocation());
 }
-inline const ::TH_SERVER::PACKET& TH_PACKET::packet(int index) const {
-  // @@protoc_insertion_point(field_get:TH_SERVER.TH_PACKET.packet)
-  return _internal_packet(index);
+inline std::string* Login_Send::_internal_mutable_token() {
+  
+  return _impl_.token_.Mutable(GetArenaForAllocation());
 }
-inline ::TH_SERVER::PACKET* TH_PACKET::_internal_add_packet() {
-  return _impl_.packet_.Add();
+inline std::string* Login_Send::release_token() {
+  // @@protoc_insertion_point(field_release:TH_SERVER.Login_Send.token)
+  return _impl_.token_.Release();
 }
-inline ::TH_SERVER::PACKET* TH_PACKET::add_packet() {
-  ::TH_SERVER::PACKET* _add = _internal_add_packet();
-  // @@protoc_insertion_point(field_add:TH_SERVER.TH_PACKET.packet)
-  return _add;
+inline void Login_Send::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.token_.SetAllocated(token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.Login_Send.token)
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::TH_SERVER::PACKET >&
-TH_PACKET::packet() const {
-  // @@protoc_insertion_point(field_list:TH_SERVER.TH_PACKET.packet)
-  return _impl_.packet_;
+
+// -------------------------------------------------------------------
+
+// Login_Recv
+
+// string message = 1;
+inline void Login_Recv::clear_message() {
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& Login_Recv::message() const {
+  // @@protoc_insertion_point(field_get:TH_SERVER.Login_Recv.message)
+  return _internal_message();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Login_Recv::set_message(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.message_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TH_SERVER.Login_Recv.message)
+}
+inline std::string* Login_Recv::mutable_message() {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:TH_SERVER.Login_Recv.message)
+  return _s;
+}
+inline const std::string& Login_Recv::_internal_message() const {
+  return _impl_.message_.Get();
+}
+inline void Login_Recv::_internal_set_message(const std::string& value) {
+  
+  _impl_.message_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Login_Recv::_internal_mutable_message() {
+  
+  return _impl_.message_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Login_Recv::release_message() {
+  // @@protoc_insertion_point(field_release:TH_SERVER.Login_Recv.message)
+  return _impl_.message_.Release();
+}
+inline void Login_Recv::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.message_.SetAllocated(message, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:TH_SERVER.Login_Recv.message)
 }
 
 #ifdef __GNUC__
@@ -606,16 +554,6 @@ TH_PACKET::packet() const {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace TH_SERVER
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::TH_SERVER::PACKET_TYPE> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::TH_SERVER::PACKET_TYPE>() {
-  return ::TH_SERVER::PACKET_TYPE_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

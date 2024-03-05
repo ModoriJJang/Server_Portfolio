@@ -306,13 +306,6 @@ void Socket_System::Send( PSocketContext socketContext, unsigned char* sendPacke
 	buffer.buf = (char*) sendPacket;
 	buffer.len = len;
 
-	//socketContext->dataBuffer.buf = socketContext->messageBuffer;
-	//memcpy(socketContext->messageBuffer, (char*)sendPacket, 4096);
-	//socketContext->messageBuffer = (char*)sendPacket;
-
-	/*socketContext->dataBuffer.buf = (char*)sendPacket;
-	socketContext->dataBuffer.len = 4096;*/
-	//int result = WSASend(socketContext->socket, &socketContext->dataBuffer, 1, &sendBytes, flags, NULL, NULL);
 	int result = WSASend(socketContext->socket, &buffer, 1, &sendBytes, flags, nullptr, nullptr);
 
 	printf("[Thread] : %i / [Socket] [Send] : %i [Result] : %d\n", std::this_thread::get_id(), socketContext->socket, result);

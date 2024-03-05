@@ -90,6 +90,7 @@ int main()
 	builder.Finish( protocol );
 
 	auto sendPacket = builder.GetBufferPointer();
+	int size = builder.GetSize();
 
 
 	while ( connectCheck == false )
@@ -99,7 +100,7 @@ int main()
 		int result = -1;
 		while ( result == -1 )
 		{
-			result = send( serverSocket, (char*)sendPacket, 4096, 0 );
+			result = send( serverSocket, (char*)sendPacket, size, 0 );
 			cout << result << endl;
 			cout << WSAGetLastError() << endl;
 		

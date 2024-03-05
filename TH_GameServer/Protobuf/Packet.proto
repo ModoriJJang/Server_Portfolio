@@ -2,40 +2,17 @@ syntax = "proto3";
 
 package TH_SERVER;
 
-enum PACKET_TYPE {
-    LOGIN = 0;
-    CHAT = 1;
-    PLAYER = 2;
-    MONSTER = 3;
+service RPC_System {
+  rpc RPC_Login (Login_Send) returns (Login_Recv) {}
 }
 
-enum PLAYER_STATE{
-    IDLE = 0;
-    WLAK = 1;
-    DASH = 2;
-    JUMP = 3;
-    EVADE = 4;
-    ATTACK = 5;
-    SKILL_Q = 6;
-    SKILL_E = 7;
-    SKILL_F = 8;
-    SKILL_R = 9;
-    HIT = 10;
-    KNOCKBACK = 11;
-    KNOCKDOWN = 12;
-}
-
-message PACKET {
-    PACKET_TYPE packettype = 1;
-    string packetdata = 2;
-}
-
-message TH_PACKET{
+message Login_Send{
     string clientid = 1;
-    repeated PACKET packet = 2;
+    string token = 2;
 }
 
-message MOVE_DIR{
-    float InX = 1;
-    float Iny = 2;
+message Login_Recv{
+    string message = 1;
 }
+
+

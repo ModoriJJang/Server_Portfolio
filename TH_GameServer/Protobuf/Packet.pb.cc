@@ -21,78 +21,75 @@ namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
 namespace TH_SERVER {
-PROTOBUF_CONSTEXPR PACKET::PACKET(
+PROTOBUF_CONSTEXPR Login_Send::Login_Send(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.packetdata_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.packettype_)*/0
+    /*decltype(_impl_.clientid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PACKETDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PACKETDefaultTypeInternal()
+struct Login_SendDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Login_SendDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PACKETDefaultTypeInternal() {}
+  ~Login_SendDefaultTypeInternal() {}
   union {
-    PACKET _instance;
+    Login_Send _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PACKETDefaultTypeInternal _PACKET_default_instance_;
-PROTOBUF_CONSTEXPR TH_PACKET::TH_PACKET(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Login_SendDefaultTypeInternal _Login_Send_default_instance_;
+PROTOBUF_CONSTEXPR Login_Recv::Login_Recv(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.packet_)*/{}
-  , /*decltype(_impl_.clientid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct TH_PACKETDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR TH_PACKETDefaultTypeInternal()
+struct Login_RecvDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Login_RecvDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~TH_PACKETDefaultTypeInternal() {}
+  ~Login_RecvDefaultTypeInternal() {}
   union {
-    TH_PACKET _instance;
+    Login_Recv _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TH_PACKETDefaultTypeInternal _TH_PACKET_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Login_RecvDefaultTypeInternal _Login_Recv_default_instance_;
 }  // namespace TH_SERVER
 static ::_pb::Metadata file_level_metadata_Packet_2eproto[2];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_Packet_2eproto[1];
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Packet_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Packet_2eproto = nullptr;
 
 const uint32_t TableStruct_Packet_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::PACKET, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::TH_SERVER::Login_Send, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::PACKET, _impl_.packettype_),
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::PACKET, _impl_.packetdata_),
+  PROTOBUF_FIELD_OFFSET(::TH_SERVER::Login_Send, _impl_.clientid_),
+  PROTOBUF_FIELD_OFFSET(::TH_SERVER::Login_Send, _impl_.token_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::TH_PACKET, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::TH_SERVER::Login_Recv, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::TH_PACKET, _impl_.clientid_),
-  PROTOBUF_FIELD_OFFSET(::TH_SERVER::TH_PACKET, _impl_.packet_),
+  PROTOBUF_FIELD_OFFSET(::TH_SERVER::Login_Recv, _impl_.message_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::TH_SERVER::PACKET)},
-  { 8, -1, -1, sizeof(::TH_SERVER::TH_PACKET)},
+  { 0, -1, -1, sizeof(::TH_SERVER::Login_Send)},
+  { 8, -1, -1, sizeof(::TH_SERVER::Login_Recv)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::TH_SERVER::_PACKET_default_instance_._instance,
-  &::TH_SERVER::_TH_PACKET_default_instance_._instance,
+  &::TH_SERVER::_Login_Send_default_instance_._instance,
+  &::TH_SERVER::_Login_Recv_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_Packet_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014Packet.proto\022\tTH_SERVER\"H\n\006PACKET\022*\n\np"
-  "ackettype\030\001 \001(\0162\026.TH_SERVER.PACKET_TYPE\022"
-  "\022\n\npacketdata\030\002 \001(\t\"@\n\tTH_PACKET\022\020\n\010clie"
-  "ntid\030\001 \001(\t\022!\n\006packet\030\002 \003(\0132\021.TH_SERVER.P"
-  "ACKET*0\n\013PACKET_TYPE\022\010\n\004CHAT\020\000\022\n\n\006PLAYER"
-  "\020\001\022\013\n\007MONSTER\020\002b\006proto3"
+  "\n\014Packet.proto\022\tTH_SERVER\"-\n\nLogin_Send\022"
+  "\020\n\010clientid\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"\035\n\nLogi"
+  "n_Recv\022\017\n\007message\030\001 \001(\t2I\n\nRPC_System\022;\n"
+  "\tRPC_Login\022\025.TH_SERVER.Login_Send\032\025.TH_S"
+  "ERVER.Login_Recv\"\000b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Packet_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Packet_2eproto = {
-    false, false, 223, descriptor_table_protodef_Packet_2eproto,
+    false, false, 186, descriptor_table_protodef_Packet_2eproto,
     "Packet.proto",
     &descriptor_table_Packet_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_Packet_2eproto::offsets,
@@ -106,273 +103,25 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_Packet_2
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_Packet_2eproto(&descriptor_table_Packet_2eproto);
 namespace TH_SERVER {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PACKET_TYPE_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Packet_2eproto);
-  return file_level_enum_descriptors_Packet_2eproto[0];
-}
-bool PACKET_TYPE_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
-
 
 // ===================================================================
 
-class PACKET::_Internal {
+class Login_Send::_Internal {
  public:
 };
 
-PACKET::PACKET(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+Login_Send::Login_Send(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:TH_SERVER.PACKET)
+  // @@protoc_insertion_point(arena_constructor:TH_SERVER.Login_Send)
 }
-PACKET::PACKET(const PACKET& from)
+Login_Send::Login_Send(const Login_Send& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PACKET* const _this = this; (void)_this;
+  Login_Send* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.packetdata_){}
-    , decltype(_impl_.packettype_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.packetdata_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.packetdata_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_packetdata().empty()) {
-    _this->_impl_.packetdata_.Set(from._internal_packetdata(), 
-      _this->GetArenaForAllocation());
-  }
-  _this->_impl_.packettype_ = from._impl_.packettype_;
-  // @@protoc_insertion_point(copy_constructor:TH_SERVER.PACKET)
-}
-
-inline void PACKET::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.packetdata_){}
-    , decltype(_impl_.packettype_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.packetdata_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.packetdata_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-
-PACKET::~PACKET() {
-  // @@protoc_insertion_point(destructor:TH_SERVER.PACKET)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void PACKET::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.packetdata_.Destroy();
-}
-
-void PACKET::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PACKET::Clear() {
-// @@protoc_insertion_point(message_clear_start:TH_SERVER.PACKET)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.packetdata_.ClearToEmpty();
-  _impl_.packettype_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* PACKET::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .TH_SERVER.PACKET_TYPE packettype = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_packettype(static_cast<::TH_SERVER::PACKET_TYPE>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // string packetdata = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_packetdata();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "TH_SERVER.PACKET.packetdata"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* PACKET::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:TH_SERVER.PACKET)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .TH_SERVER.PACKET_TYPE packettype = 1;
-  if (this->_internal_packettype() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_packettype(), target);
-  }
-
-  // string packetdata = 2;
-  if (!this->_internal_packetdata().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_packetdata().data(), static_cast<int>(this->_internal_packetdata().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "TH_SERVER.PACKET.packetdata");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_packetdata(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:TH_SERVER.PACKET)
-  return target;
-}
-
-size_t PACKET::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:TH_SERVER.PACKET)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string packetdata = 2;
-  if (!this->_internal_packetdata().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_packetdata());
-  }
-
-  // .TH_SERVER.PACKET_TYPE packettype = 1;
-  if (this->_internal_packettype() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_packettype());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PACKET::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PACKET::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PACKET::GetClassData() const { return &_class_data_; }
-
-
-void PACKET::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<PACKET*>(&to_msg);
-  auto& from = static_cast<const PACKET&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:TH_SERVER.PACKET)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_packetdata().empty()) {
-    _this->_internal_set_packetdata(from._internal_packetdata());
-  }
-  if (from._internal_packettype() != 0) {
-    _this->_internal_set_packettype(from._internal_packettype());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void PACKET::CopyFrom(const PACKET& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:TH_SERVER.PACKET)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool PACKET::IsInitialized() const {
-  return true;
-}
-
-void PACKET::InternalSwap(PACKET* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.packetdata_, lhs_arena,
-      &other->_impl_.packetdata_, rhs_arena
-  );
-  swap(_impl_.packettype_, other->_impl_.packettype_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata PACKET::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_Packet_2eproto_getter, &descriptor_table_Packet_2eproto_once,
-      file_level_metadata_Packet_2eproto[0]);
-}
-
-// ===================================================================
-
-class TH_PACKET::_Internal {
- public:
-};
-
-TH_PACKET::TH_PACKET(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:TH_SERVER.TH_PACKET)
-}
-TH_PACKET::TH_PACKET(const TH_PACKET& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  TH_PACKET* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.packet_){from._impl_.packet_}
-    , decltype(_impl_.clientid_){}
+      decltype(_impl_.clientid_){}
+    , decltype(_impl_.token_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -384,26 +133,38 @@ TH_PACKET::TH_PACKET(const TH_PACKET& from)
     _this->_impl_.clientid_.Set(from._internal_clientid(), 
       _this->GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(copy_constructor:TH_SERVER.TH_PACKET)
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_token().empty()) {
+    _this->_impl_.token_.Set(from._internal_token(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:TH_SERVER.Login_Send)
 }
 
-inline void TH_PACKET::SharedCtor(
+inline void Login_Send::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.packet_){arena}
-    , decltype(_impl_.clientid_){}
+      decltype(_impl_.clientid_){}
+    , decltype(_impl_.token_){}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.clientid_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.clientid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-TH_PACKET::~TH_PACKET() {
-  // @@protoc_insertion_point(destructor:TH_SERVER.TH_PACKET)
+Login_Send::~Login_Send() {
+  // @@protoc_insertion_point(destructor:TH_SERVER.Login_Send)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -411,28 +172,28 @@ TH_PACKET::~TH_PACKET() {
   SharedDtor();
 }
 
-inline void TH_PACKET::SharedDtor() {
+inline void Login_Send::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.packet_.~RepeatedPtrField();
   _impl_.clientid_.Destroy();
+  _impl_.token_.Destroy();
 }
 
-void TH_PACKET::SetCachedSize(int size) const {
+void Login_Send::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void TH_PACKET::Clear() {
-// @@protoc_insertion_point(message_clear_start:TH_SERVER.TH_PACKET)
+void Login_Send::Clear() {
+// @@protoc_insertion_point(message_clear_start:TH_SERVER.Login_Send)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.packet_.Clear();
   _impl_.clientid_.ClearToEmpty();
+  _impl_.token_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* TH_PACKET::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* Login_Send::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -444,20 +205,17 @@ const char* TH_PACKET::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
           auto str = _internal_mutable_clientid();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "TH_SERVER.TH_PACKET.clientid"));
+          CHK_(::_pbi::VerifyUTF8(str, "TH_SERVER.Login_Send.clientid"));
         } else
           goto handle_unusual;
         continue;
-      // repeated .TH_SERVER.PACKET packet = 2;
+      // string token = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_packet(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+          auto str = _internal_mutable_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "TH_SERVER.Login_Send.token"));
         } else
           goto handle_unusual;
         continue;
@@ -484,9 +242,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* TH_PACKET::_InternalSerialize(
+uint8_t* Login_Send::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:TH_SERVER.TH_PACKET)
+  // @@protoc_insertion_point(serialize_to_array_start:TH_SERVER.Login_Send)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -495,41 +253,36 @@ uint8_t* TH_PACKET::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_clientid().data(), static_cast<int>(this->_internal_clientid().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "TH_SERVER.TH_PACKET.clientid");
+      "TH_SERVER.Login_Send.clientid");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_clientid(), target);
   }
 
-  // repeated .TH_SERVER.PACKET packet = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_packet_size()); i < n; i++) {
-    const auto& repfield = this->_internal_packet(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  // string token = 2;
+  if (!this->_internal_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_token().data(), static_cast<int>(this->_internal_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "TH_SERVER.Login_Send.token");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_token(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:TH_SERVER.TH_PACKET)
+  // @@protoc_insertion_point(serialize_to_array_end:TH_SERVER.Login_Send)
   return target;
 }
 
-size_t TH_PACKET::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:TH_SERVER.TH_PACKET)
+size_t Login_Send::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:TH_SERVER.Login_Send)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // repeated .TH_SERVER.PACKET packet = 2;
-  total_size += 1UL * this->_internal_packet_size();
-  for (const auto& msg : this->_impl_.packet_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
 
   // string clientid = 1;
   if (!this->_internal_clientid().empty()) {
@@ -538,55 +291,270 @@ size_t TH_PACKET::ByteSizeLong() const {
         this->_internal_clientid());
   }
 
+  // string token = 2;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_token());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TH_PACKET::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Login_Send::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    TH_PACKET::MergeImpl
+    Login_Send::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TH_PACKET::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Login_Send::GetClassData() const { return &_class_data_; }
 
 
-void TH_PACKET::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<TH_PACKET*>(&to_msg);
-  auto& from = static_cast<const TH_PACKET&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:TH_SERVER.TH_PACKET)
+void Login_Send::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Login_Send*>(&to_msg);
+  auto& from = static_cast<const Login_Send&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:TH_SERVER.Login_Send)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.packet_.MergeFrom(from._impl_.packet_);
   if (!from._internal_clientid().empty()) {
     _this->_internal_set_clientid(from._internal_clientid());
+  }
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void TH_PACKET::CopyFrom(const TH_PACKET& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:TH_SERVER.TH_PACKET)
+void Login_Send::CopyFrom(const Login_Send& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:TH_SERVER.Login_Send)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool TH_PACKET::IsInitialized() const {
+bool Login_Send::IsInitialized() const {
   return true;
 }
 
-void TH_PACKET::InternalSwap(TH_PACKET* other) {
+void Login_Send::InternalSwap(Login_Send* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.packet_.InternalSwap(&other->_impl_.packet_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.clientid_, lhs_arena,
       &other->_impl_.clientid_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.token_, lhs_arena,
+      &other->_impl_.token_, rhs_arena
+  );
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata TH_PACKET::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Login_Send::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Packet_2eproto_getter, &descriptor_table_Packet_2eproto_once,
+      file_level_metadata_Packet_2eproto[0]);
+}
+
+// ===================================================================
+
+class Login_Recv::_Internal {
+ public:
+};
+
+Login_Recv::Login_Recv(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:TH_SERVER.Login_Recv)
+}
+Login_Recv::Login_Recv(const Login_Recv& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Login_Recv* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    _this->_impl_.message_.Set(from._internal_message(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:TH_SERVER.Login_Recv)
+}
+
+inline void Login_Recv::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+Login_Recv::~Login_Recv() {
+  // @@protoc_insertion_point(destructor:TH_SERVER.Login_Recv)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Login_Recv::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.message_.Destroy();
+}
+
+void Login_Recv::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void Login_Recv::Clear() {
+// @@protoc_insertion_point(message_clear_start:TH_SERVER.Login_Recv)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Login_Recv::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string message = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "TH_SERVER.Login_Recv.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Login_Recv::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:TH_SERVER.Login_Recv)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string message = 1;
+  if (!this->_internal_message().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "TH_SERVER.Login_Recv.message");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_message(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TH_SERVER.Login_Recv)
+  return target;
+}
+
+size_t Login_Recv::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:TH_SERVER.Login_Recv)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 1;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Login_Recv::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    Login_Recv::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Login_Recv::GetClassData() const { return &_class_data_; }
+
+
+void Login_Recv::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Login_Recv*>(&to_msg);
+  auto& from = static_cast<const Login_Recv&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:TH_SERVER.Login_Recv)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Login_Recv::CopyFrom(const Login_Recv& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:TH_SERVER.Login_Recv)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Login_Recv::IsInitialized() const {
+  return true;
+}
+
+void Login_Recv::InternalSwap(Login_Recv* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.message_, lhs_arena,
+      &other->_impl_.message_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Login_Recv::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Packet_2eproto_getter, &descriptor_table_Packet_2eproto_once,
       file_level_metadata_Packet_2eproto[1]);
@@ -595,13 +563,13 @@ void TH_PACKET::InternalSwap(TH_PACKET* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace TH_SERVER
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::TH_SERVER::PACKET*
-Arena::CreateMaybeMessage< ::TH_SERVER::PACKET >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::TH_SERVER::PACKET >(arena);
+template<> PROTOBUF_NOINLINE ::TH_SERVER::Login_Send*
+Arena::CreateMaybeMessage< ::TH_SERVER::Login_Send >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::TH_SERVER::Login_Send >(arena);
 }
-template<> PROTOBUF_NOINLINE ::TH_SERVER::TH_PACKET*
-Arena::CreateMaybeMessage< ::TH_SERVER::TH_PACKET >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::TH_SERVER::TH_PACKET >(arena);
+template<> PROTOBUF_NOINLINE ::TH_SERVER::Login_Recv*
+Arena::CreateMaybeMessage< ::TH_SERVER::Login_Recv >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::TH_SERVER::Login_Recv >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
