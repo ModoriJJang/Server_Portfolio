@@ -19,8 +19,10 @@ public:
 	void Destroy();
 
 public:
+	void Token_Renewal( std::string clientId, std::string token );
+	void Token_Clear( std::string clientID );
 	bool Token_Verify( std::string clientID, std::string token );
-
+	
 private:
 	MYSQL* _mysql = nullptr;
 };

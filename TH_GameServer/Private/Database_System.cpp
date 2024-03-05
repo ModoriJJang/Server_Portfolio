@@ -1,5 +1,7 @@
 #include "Database_System.h"
 
+#include <iostream>
+
 bool Database_System::Initialize()
 {
 	MYSQL* conn = new MYSQL();
@@ -28,6 +30,15 @@ void Database_System::Tick()
 void Database_System::Destroy()
 {
 	mysql_close( _mysql );
+}
+
+void Database_System::Token_Renewal( std::string clientId, std::string token )
+{
+	std::cout << "[Database_System] ClientID : " + clientId + " Token : " + token;
+}
+
+void Database_System::Token_Clear( std::string clientID )
+{
 }
 
 bool Database_System::Token_Verify( std::string clientID, std::string token )

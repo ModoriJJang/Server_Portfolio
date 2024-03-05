@@ -1,7 +1,8 @@
 #pragma once
-
+#include "Database_System.h"
 #include "../Protobuf/Packet.grpc.pb.h"
 #include <grpc++/grpc++.h>
+
 
 class gRPC_Login final : public TH_SERVER::RPC_System::AsyncService
 {
@@ -50,7 +51,7 @@ public:
 
 			// The actual processing.
 			_recv.set_message( "test" );
-
+			Database_System::GetInstance().Token_Renewal( _send.clientid(), _send.token() );
 			// And we are done! Let the gRPC runtime know we've finished, using the
 			// memory address of this instance as the uniquely identifying tag for
 			// the event.
