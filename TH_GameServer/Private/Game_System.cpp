@@ -21,31 +21,31 @@ void Game_System::Tick()
 
 void Game_System::Destroy()
 {
-	for(auto& world : _worlds )
+	for(auto& server : _servers )
 	{
-		delete world.second;
-		world.second = nullptr;
+		delete server.second;
+		server.second = nullptr;
 	}
 
-	_worlds.clear();
+	_servers.clear();
 }
 
 void Game_System::Create_Worlds()
 {
-	for ( int worldName = 0; worldName < (int)SERVER_NAME::SERVER_END; worldName++ )
+	for ( int serverName = 0; serverName < (int)SERVER_NAME::SERVER_END; serverName++ )
 	{
-		Server* world = new Server();
-		world->Initialize();
-		_worlds.insert( std::make_pair( (SERVER_NAME)worldName, world) );
-		printf( "[Game_System} Create World %d\n", worldName );
+		Server* server = new Server();
+		server->Initialize();
+		_servers.insert( std::make_pair( (SERVER_NAME)serverName, server) );
+		printf( "[Game_System} Create World %d\n", serverName );
 	}
 }
 
 void Game_System::Create_Worlds_Thread()
 {
 	std::vector<std::thread> _worldThreads;
-	_worldThreads.reserve( _worlds.size() );
-	for ( auto& world : _worlds )
+	_worldThreads.reserve( _servers.size() );
+	for ( auto& world : _servers )
 	{
 		_worldThreads.emplace_back( std::thread( World_Tick, world.second ) );
 	}

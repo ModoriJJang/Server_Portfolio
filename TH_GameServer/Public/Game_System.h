@@ -34,7 +34,7 @@ public:
 	}
 
 public:
-	std::unordered_map<SERVER_NAME, Server*>_worlds;
+	std::unordered_map<SERVER_NAME, Server*>_servers;
 	
 	unsigned int _network_ID;
 };

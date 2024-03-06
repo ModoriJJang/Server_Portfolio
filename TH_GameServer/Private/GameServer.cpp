@@ -21,4 +21,5 @@ void GameServer::Destroy()
 {
 	Game_System::GetInstance().Destroy();
 	Socket_System::GetInstance().Destroy();
+	gRPC_System::GetInstance().Destroy();
 }
