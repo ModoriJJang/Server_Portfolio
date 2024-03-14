@@ -16,12 +16,14 @@ public:
 
 public:
 	bool Initialize();
-	void Tick();
+	void Tick( float DeltaTime );
 	void Destroy();
 	
 public:
 	void Create_Worlds();
 	void Create_Worlds_Thread();
+
+	void Replication_Player(int server, int channel, Player player);
 
 	Player Get_Player(int server, int channel);
 

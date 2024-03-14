@@ -20,7 +20,7 @@ public:
 
 public:
 	bool Initialize();
-	void Tick();
+	void Tick( float DeltaTime );
 	void Destroy();
 
 public:
@@ -28,9 +28,15 @@ public:
 	void SendPacket(PSocketContext client, std::vector<flatbuffers::Offset<Packet>>& packets);
 	void BroadcastPacket( std::stringstream& sendPacket);
 
+	void Broadcast_Server_Packet();
+
 private:
 	static void Login_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet );
 	static void Chat_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet );
 	static void Player_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet );
+
+	flatbuffers::FlatBufferBuilder _serverBuilder;
+
+	float broadcastTime = 0.f;
 };
 

@@ -8,7 +8,7 @@ bool Channel::Initialize()
 	return false;
 }
 
-void Channel::Tick()
+void Channel::Tick( float DeltaTime )
 {
 }
 

@@ -19,12 +19,12 @@ bool Socket_System::Initialize()
 	CreateSocket();
 	CreateWorkerThread();
 
-	Packet_System::GetInstance().Initialize();
+	
 
 	return true;
 }
 
-void Socket_System::Tick()
+void Socket_System::Tick( float DeltaTime )
 {
 }
 

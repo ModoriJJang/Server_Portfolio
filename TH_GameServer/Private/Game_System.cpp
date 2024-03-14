@@ -4,7 +4,7 @@
 
 void World_Tick( Server* world )
 {
-	world->Tick();
+	//world->Tick();
 }
 
 bool Game_System::Initialize()
@@ -13,10 +13,14 @@ bool Game_System::Initialize()
 	return true;
 }
 
-void Game_System::Tick()
+void Game_System::Tick( float DeltaTime )
 {
 	//Create_Worlds_Thread();
 	//_world->Tick();
+	for(auto& server : _servers )
+	{
+		server.second->Tick( DeltaTime );
+	}
 }
 
 void Game_System::Destroy()
@@ -52,6 +56,10 @@ void Game_System::Create_Worlds_Thread()
 
 	for (auto& thread : _worldThreads)
             thread.join();
+}
+
+void Game_System::Replication_Player( int server, int channel, Player player )
+{
 }
 
 Player Game_System::Get_Player(int server, int channel)

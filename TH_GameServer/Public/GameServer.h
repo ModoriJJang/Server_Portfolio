@@ -8,7 +8,7 @@ public:
 
 public:
 	bool Initialize();
-	void Tick();
+	void Tick( float DeltaTime );
 	void Destroy();
 };
 

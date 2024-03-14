@@ -43,6 +43,9 @@
     <Filter Include="07.Game\World">
       <UniqueIdentifier>{9f91a1df-425a-45ea-b326-b463e189bc71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Game\NavMesh">
+      <UniqueIdentifier>{8f0c0543-0504-4d21-8004-e382fe072fad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\TH_GameServer.cpp">

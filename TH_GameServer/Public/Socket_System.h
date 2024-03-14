@@ -40,7 +40,7 @@ public:
 
 public:
 	bool Initialize();
-	void Tick();
+	void Tick( float DeltaTime );
 	void Destroy();
 
 private:
@@ -63,5 +63,7 @@ private:
 
 	LPFN_ACCEPTEX _fnAcceptEx = NULL;
 	std::set<PSocketContext> _connectClients;
+
+
 };
 

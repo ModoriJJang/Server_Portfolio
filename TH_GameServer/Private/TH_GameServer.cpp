@@ -3,16 +3,43 @@
 
 #include <iostream>
 #include "GameServer.h"
+#include <Windows.h>
+
+#define MAX_SERVER_TICK_COUNT  60.0
 
 int main()
 {
+    LARGE_INTEGER cpuTick = {};
+	LARGE_INTEGER startTime = {};
+	LARGE_INTEGER endTime = {};
+    double tickTime = 0.0;
+	double deltaTime = 0.0;
+
+    QueryPerformanceFrequency(&cpuTick);
+    QueryPerformanceCounter(&startTime);
+    endTime = startTime;
+    tickTime = (double)(startTime.QuadPart - endTime.QuadPart) / cpuTick.QuadPart;
+
+    
+
     GameServer* gameServer = new GameServer;
 
     if (gameServer->Initialize())
     {
         while (true)
         {
-            gameServer->Tick();
+            QueryPerformanceCounter(&startTime);
+            tickTime = (double)(startTime.QuadPart - endTime.QuadPart) / cpuTick.QuadPart;
+            endTime = startTime;
+
+            deltaTime += tickTime;
+
+            if ( deltaTime > 1.0 / MAX_SERVER_TICK_COUNT )
+            {
+                gameServer->Tick( deltaTime );
+            }
+
+            deltaTime = 0.0;
         }
     }
     

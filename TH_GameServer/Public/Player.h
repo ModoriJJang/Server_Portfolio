@@ -1,4 +1,5 @@
 #pragma once
+#include "Socket_System.h"
 #include "GameObject.h"
 
 #include <string>
@@ -15,5 +16,6 @@ public:
 	float _x;
 	float _y;
 	float _z;
+	PSocketContext _client;
 };
 

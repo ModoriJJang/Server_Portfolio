@@ -14,50 +14,17 @@ bool Packet_System::Initialize()
 	func_PacketProcess[PacketData_LOGIN] = Login_PacketProcess;
 	func_PacketProcess[PacketData_CHAT] = Chat_PacketProcess;
 	func_PacketProcess[PacketData_PLAYER] = Player_PacketProcess;
-
-
-
-	//flatbuffers::FlatBufferBuilder builder( 4096 );
-	//auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token1")).Union());
-	//auto packet2 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA(builder, builder.CreateString("token2")).Union());
-
-	//std::vector<flatbuffers::Offset<Packet>> packets;
-	//packets.emplace_back(packet1);
-	//packets.emplace_back(packet2);
-
-
-	//auto protocol = CreateProtocol( builder, builder.CreateString("test"), Server_Server_1, 1, builder.CreateVector(packets).o	);
-	//builder.Finish( protocol );
-
-	//auto data = builder.GetBufferPointer();
-
-	/*auto temp = GetProtocol( data );
-	auto test = temp->packet()->Get( 0 );
-
-	for ( auto it = temp->packet()->begin(); it != temp->packet()->end(); it++ )
-	{
-		if ( it->data_type() == PacketData_LOGIN )
-		{
-			std::string token = it->data_as_LOGIN()->token()->str();
-			int a = 0;
-		}
-	}*/
-	/*{
-		auto packets = GetProtocol( data )->packet();
-
-		for ( auto iter = packets->begin(); iter != packets->end(); iter++ )
-		{
-			(*func_PacketProcess[iter->data_type()]) ( iter->data() );
-		}
-	}*/
-	
-
 	
 	return false;
 }
 
-void Packet_System::Tick()
+void Packet_System::Tick( float DeltaTime )
 {
+	broadcastTime += DeltaTime;
+	if ( broadcastTime > 12.f / 60.f )
+	{
+		broadcastTime = 0.f;
+	}
 }
 
 void Packet_System::Destroy()
@@ -112,6 +79,10 @@ void Packet_System::BroadcastPacket( std::stringstream& sendPacket)
 	//Socket_System::GetInstance().Broadcast( sendBuffer );
 }
 
+void Packet_System::Broadcast_Server_Packet()
+{
+}
+
 void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet )
 {
 	auto data = (LOGIN_DATA*) packet;
@@ -123,6 +94,7 @@ void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* 
 	}
 
 	flatbuffers::FlatBufferBuilder builder( 4096 );
+	builder.Reset();
 
 	auto ClientPacket = CreatePacket( builder, PacketData_LOGIN, builder.CreateString("Login").o);
 
@@ -155,5 +127,7 @@ void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* 
 	data->position()->x();
 	data->position()->y();
 	data->position()->z();
+
+	Game_System::GetInstance();
 }
 

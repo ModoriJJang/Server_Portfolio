@@ -12,11 +12,11 @@ bool Server::Initialize()
     return true;
 }
 
-void Server::Tick()
+void Server::Tick( float DeltaTime )
 {
     for ( size_t index = 0; index < MAX_CHANNEL; index++ )
     {
-        _channels[index].Tick();
+        _channels[index].Tick( DeltaTime );
     }
 }
 
