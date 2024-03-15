@@ -46,6 +46,15 @@
     <Filter Include="07.Game\NavMesh">
       <UniqueIdentifier>{8f0c0543-0504-4d21-8004-e382fe072fad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Game\World\Cell">
+      <UniqueIdentifier>{7c1c0b87-c46f-4d4e-abd5-37eb87ee9cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\GameObject\NPC">
+      <UniqueIdentifier>{103d8b88-a317-4d6f-9122-0c1c2e5f8a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Game\GameObject\Boss">
+      <UniqueIdentifier>{b61bf25f-adcf-450a-96b0-5101935c79aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\TH_GameServer.cpp">
@@ -87,6 +96,9 @@
     <ClCompile Include="..\Private\World.cpp">
       <Filter>07.Game\World</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\Cell.cpp">
+      <Filter>07.Game\World\Cell</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h">
@@ -124,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="..\Public\World.h">
       <Filter>07.Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Cell.h">
+      <Filter>07.Game\World\Cell</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Private\Cell.cpp" />
     <ClCompile Include="..\Private\Channel.cpp" />
     <ClCompile Include="..\Private\Chat_System.cpp" />
     <ClCompile Include="..\Private\Database_System.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\Private\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Public\Cell.h" />
     <ClInclude Include="..\Public\Channel.h" />
     <ClInclude Include="..\Public\Chat_System.h" />
     <ClInclude Include="..\Public\Database_System.h" />

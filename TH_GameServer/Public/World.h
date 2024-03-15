@@ -6,4 +6,3 @@ public:
 	void Tick();
 	void Destroy();
 };
-
