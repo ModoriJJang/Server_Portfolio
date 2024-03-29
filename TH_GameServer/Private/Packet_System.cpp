@@ -35,6 +35,8 @@ void Packet_System::Tick( float DeltaTime )
 			_serverBuilder.Clear();
 
 			_serverPackets.clear();
+
+			printf( " BroadCast!!\n" );
 		}
 	}
 }
@@ -105,6 +107,8 @@ void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* 
 		return;
 	}
 
+	Game_System::GetInstance().Add_Player( protocol->server(), protocol->channel(), protocol->clientid()->str() );
+
 	flatbuffers::FlatBufferBuilder builder( 4096 );
 	//builder.Reset();
 
@@ -134,9 +138,14 @@ void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* 
 {
 	auto data = (PLAYER_DATA*)packet;
 
-	auto player = Game_System::GetInstance().Get_Player( protocol->server(), protocol->channel(), protocol->clientid()->str() );
+	auto player = Game_System::GetInstance().Get_Player( protocol->server(), protocol->channel(), data->owner()->str() );
+	printf( "receive");
+	printf( data->owner()->c_str());
+	printf( "\n");
 
-	player._position = *data->position();
+	player._ClientID = data->owner()->str();
+
+	//player._position = *data->position();
 
 	Packet_System::GetInstance().Make_Player_Packet( player );
 }
@@ -144,7 +153,9 @@ void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* 
 void Packet_System::Make_Player_Packet( Player& player )
 {
 	auto data = CreatePLAYER_DATA( _serverBuilder, _serverBuilder.CreateString(player._ClientID), player._NetworkID, &player._position);
-
+	printf( "send");
+	printf( player._ClientID.c_str());
+	printf( "\n");
 	auto playerPacket = CreatePacket( _serverBuilder, PacketData_PLAYER, data.o );
 
 	_serverPackets.emplace_back( playerPacket );

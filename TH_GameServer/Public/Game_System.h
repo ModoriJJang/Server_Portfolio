@@ -27,6 +27,8 @@ public:
 
 	Player Get_Player(int server, int channel, std::string playerID);
 
+	void Add_Player( int server, int channel, std::string playerID );
+
 	int Add_Player_In_Server();
 	void Remove_Player_In_Server( int PlayerId );
 

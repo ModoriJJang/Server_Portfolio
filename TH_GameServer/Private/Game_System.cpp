@@ -68,6 +68,13 @@ Player Game_System::Get_Player(int server, int channel, std::string playerID)
 	 
 }
 
+void Game_System::Add_Player(int server, int channel, std::string playerID)
+{
+	Player* player = new Player();
+	_servers[(SERVER_NAME) server]->_channels[channel]._players.insert( make_pair(playerID, player));
+	 
+}
+
 int Game_System::Add_Player_In_Server()
 {
 	/*Player* player = new Player();

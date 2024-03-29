@@ -28,18 +28,30 @@ static void ReceiveMessage(SOCKET serverSocket)
 	char recvData[4096] = { 0, };
 	while (true)
 	{
+		
 		cout << "패킷 수신 시작" << endl;
 		recv(serverSocket, recvData, 4096, NULL);
 		cout << "패킷 수신 끝" << endl;
 
-		auto temp = GetProtocol(recvData);
-		std::string server = temp->clientid()->str();
+		//system( "cls" );
 
-		cout << "로그인 성공" << endl;
+		auto temp = GetProtocol(recvData);
+		//std::string server = temp->clientid()->str();
+
+		int packetSize = temp->packet()->Length();
+
+
+		for ( int i = 0; i < packetSize; i++ )
+		{
+			if ( temp->packet()->Get( i )->data_type() == PacketData_PLAYER )
+			{
+				cout << temp->packet()->Get( i )->data_as_PLAYER()->owner()->str() << endl;
+			}
+		}
 
 		connectCheck = true;
 
-		cout << server << endl;
+		//cout << server << endl;
 	}
 
 	return;
@@ -75,31 +87,63 @@ int main()
 	}
 	cout << "서버연결성공" << endl;
 
+	std::srand(std::time(nullptr));
+	int random = std::rand();
+
+	std::string randomID = std::to_string( random );
+
 	thread recvThread( ReceiveMessage, serverSocket );
 
-	flatbuffers::FlatBufferBuilder builder( 4096 );
-	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA( builder, builder.CreateString( "token1" ) ).Union() );
-	builder.Finish( packet1 );
+	{
+		flatbuffers::FlatBufferBuilder builder( 4096 );
+		auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA( builder, builder.CreateString( "token1" ) ).Union() );
+		builder.Finish( packet1 );
 
-	auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder ).Union() );
-	builder.Finish( packet2 );
-
-	std::vector<flatbuffers::Offset<Packet>> packets;
-	packets.emplace_back( packet1 );
-	packets.emplace_back( packet2 );
+		std::vector<flatbuffers::Offset<Packet>> packets;
+		packets.emplace_back( packet1 );
 
 
-	auto protocol = CreateProtocol( builder, builder.CreateString( "client1" ), EServer_Server_1, 1, builder.CreateVector( packets ) );
-	builder.Finish( protocol );
+		auto protocol = CreateProtocol( builder, builder.CreateString( randomID ), EServer_Server_1, 1, builder.CreateVector( packets ) );
+		builder.Finish( protocol );
 
-	auto sendPacket = builder.GetBufferPointer();
-	int size = builder.GetSize();
+		auto sendPacket = builder.GetBufferPointer();
+		int size = builder.GetSize();
 
+		DWORD flags = 0;
+		int result = -1;
+		while ( result == -1 )
+		{
+			result = send( serverSocket, (char*)sendPacket, size, 0 );
+			cout << result << endl;
+			cout << WSAGetLastError() << endl;	
+		}
+	}
 
 	while ( connectCheck == false )
 	{
+
+	}
+
+	while ( true )
+	{
+		flatbuffers::FlatBufferBuilder builder( 4096 );
+		
+
+		auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder, builder.CreateString(randomID).o ).o );
+		builder.Finish( packet2 );
+
+		std::vector<flatbuffers::Offset<Packet>> packets;
+		packets.emplace_back( packet2 );
+
+
+		auto protocol = CreateProtocol( builder, builder.CreateString( randomID ), EServer_Server_1, 1, builder.CreateVector( packets ) );
+		builder.Finish( protocol );
+
+		auto sendPacket = builder.GetBufferPointer();
+		int size = builder.GetSize();
+
 		DWORD flags = 0;
-		cout << "패킷 전송 시작" << endl;
+		//cout << "패킷 전송 시작" << endl;
 		int result = -1;
 		while ( result == -1 )
 		{
@@ -108,27 +152,16 @@ int main()
 			cout << WSAGetLastError() << endl;
 		
 		}
-		cout << "패킷 전송 끝" << endl;
+		//cout << "패킷 전송 끝" << endl;
 
 		Sleep( 3000 );
 	}
-	
 
-	
+	//int a = 0;
+	//while (true)
+	//{
 
-
-	//char recvData[4096] = { 0, };
-	//cout << "패킷 수신 시작" << endl;
-
-	//recv(serverSocket, recvData, 4096, NULL);
-	//cout << "패킷 수신 끝" << endl;
-	
-
-	int a = 0;
-	while (true)
-	{
-
-	}
+	//}
 
 }
 

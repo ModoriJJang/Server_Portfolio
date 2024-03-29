@@ -37,9 +37,8 @@ int main()
             if ( deltaTime > 1.0 / MAX_SERVER_TICK_COUNT )
             {
                 gameServer->Tick( deltaTime );
+                deltaTime = 0.0;
             }
-
-            deltaTime = 0.0;
         }
     }
     
