@@ -1,5 +1,9 @@
 #pragma once
 
+#include <unordered_map>
+#include <string>
+#include <Player.h>
+
 #include "World.h"
 class Channel
 {
@@ -17,5 +21,9 @@ public:
 private:
 	int _channel_ID;
 	World* _world;
+ 
+public:
+	std::unordered_map<std::string, Player*> _players;
+	
 };
 

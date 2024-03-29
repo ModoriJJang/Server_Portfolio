@@ -24,6 +24,18 @@ void Packet_System::Tick( float DeltaTime )
 	if ( broadcastTime > 12.f / 60.f )
 	{
 		broadcastTime = 0.f;
+
+		if ( _serverPackets.empty() == false )
+		{
+			auto clientProtocol = CreateProtocol( _serverBuilder, _serverBuilder.CreateString("Server"), EServer_MIN, 0, _serverBuilder.CreateVector(_serverPackets));
+			_serverBuilder.Finish( clientProtocol );
+
+			Socket_System::GetInstance().Broadcast( _serverBuilder.GetBufferPointer(), _serverBuilder.GetSize() );
+
+			_serverBuilder.Clear();
+
+			_serverPackets.clear();
+		}
 	}
 }
 
@@ -94,7 +106,7 @@ void Packet_System::Login_PacketProcess( PSocketContext client, const Protocol* 
 	}
 
 	flatbuffers::FlatBufferBuilder builder( 4096 );
-	builder.Reset();
+	//builder.Reset();
 
 	auto ClientPacket = CreatePacket( builder, PacketData_LOGIN, builder.CreateString("Login").o);
 
@@ -120,14 +132,21 @@ void Packet_System::Chat_PacketProcess( PSocketContext client, const Protocol* p
 
 void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* protocol, const void* packet)
 {
-	protocol->server();
-	protocol->channel();
 	auto data = (PLAYER_DATA*)packet;
-	data->networkid();
-	data->position()->x();
-	data->position()->y();
-	data->position()->z();
 
-	Game_System::GetInstance();
+	auto player = Game_System::GetInstance().Get_Player( protocol->server(), protocol->channel(), protocol->clientid()->str() );
+
+	player._position = *data->position();
+
+	Packet_System::GetInstance().Make_Player_Packet( player );
+}
+
+void Packet_System::Make_Player_Packet( Player& player )
+{
+	auto data = CreatePLAYER_DATA( _serverBuilder, _serverBuilder.CreateString(player._ClientID), player._NetworkID, &player._position);
+
+	auto playerPacket = CreatePacket( _serverBuilder, PacketData_PLAYER, data.o );
+
+	_serverPackets.emplace_back( playerPacket );
 }
 

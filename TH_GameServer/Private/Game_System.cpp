@@ -62,9 +62,10 @@ void Game_System::Replication_Player( int server, int channel, Player player )
 {
 }
 
-Player Game_System::Get_Player(int server, int channel)
+Player Game_System::Get_Player(int server, int channel, std::string playerID)
 {
-	return Player();
+	return *_servers[(SERVER_NAME) server]->_channels[channel]._players[playerID];
+	 
 }
 
 int Game_System::Add_Player_In_Server()

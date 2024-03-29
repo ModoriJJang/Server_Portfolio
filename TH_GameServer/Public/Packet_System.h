@@ -35,8 +35,10 @@ private:
 	static void Chat_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet );
 	static void Player_PacketProcess( PSocketContext client, const Protocol* protocol, const void* packet );
 
-	flatbuffers::FlatBufferBuilder _serverBuilder;
+	void Make_Player_Packet( class Player& player );
 
+	flatbuffers::FlatBufferBuilder _serverBuilder;
+	std::vector<flatbuffers::Offset<Packet>> _serverPackets;
 	float broadcastTime = 0.f;
 };
 

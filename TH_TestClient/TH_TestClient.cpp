@@ -79,11 +79,14 @@ int main()
 
 	flatbuffers::FlatBufferBuilder builder( 4096 );
 	auto packet1 = CreatePacket( builder, PacketData_LOGIN, CreateLOGIN_DATA( builder, builder.CreateString( "token1" ) ).Union() );
-
 	builder.Finish( packet1 );
+
+	auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder ).Union() );
+	builder.Finish( packet2 );
 
 	std::vector<flatbuffers::Offset<Packet>> packets;
 	packets.emplace_back( packet1 );
+	packets.emplace_back( packet2 );
 
 
 	auto protocol = CreateProtocol( builder, builder.CreateString( "client1" ), EServer_Server_1, 1, builder.CreateVector( packets ) );
