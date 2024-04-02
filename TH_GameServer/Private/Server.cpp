@@ -20,6 +20,14 @@ void Server::Tick( float DeltaTime )
     }
 }
 
+void Server::Server_Tick( float DeltaTime )
+{
+    for ( size_t index = 0; index < MAX_CHANNEL; index++ )
+    {
+        _channels[index].Server_Tick( DeltaTime );
+    }
+}
+
 void Server::Destroy()
 {
     delete[] _channels;

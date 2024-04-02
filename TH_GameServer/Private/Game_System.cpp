@@ -23,6 +23,14 @@ void Game_System::Tick( float DeltaTime )
 	}
 }
 
+void Game_System::Server_Tick( float DeltaTime )
+{
+	for(auto& server : _servers )
+	{
+		server.second->Server_Tick( DeltaTime );
+	}
+}
+
 void Game_System::Destroy()
 {
 	for(auto& server : _servers )
@@ -62,16 +70,14 @@ void Game_System::Replication_Player( int server, int channel, Player player )
 {
 }
 
-Player Game_System::Get_Player(int server, int channel, std::string playerID)
+Player& Game_System::Get_Player(int server, int channel, std::string playerID)
 {
-	return *_servers[(SERVER_NAME) server]->_channels[channel]._players[playerID];
-	 
+	return *_servers[(SERVER_NAME) server]->_channels[channel]._players[playerID];	 
 }
 
 void Game_System::Add_Player(int server, int channel, std::string playerID)
 {
-	Player* player = new Player();
-	_servers[(SERVER_NAME) server]->_channels[channel]._players.insert( make_pair(playerID, player));
+	_servers[(SERVER_NAME) server]->_channels[channel]._players.insert( make_pair(playerID, new Player()));
 	 
 }
 

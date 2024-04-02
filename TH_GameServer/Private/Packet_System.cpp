@@ -21,9 +21,13 @@ bool Packet_System::Initialize()
 void Packet_System::Tick( float DeltaTime )
 {
 	broadcastTime += DeltaTime;
-	if ( broadcastTime > 12.f / 60.f )
+	
+	//if ( broadcastTime > 12.f / 60.f )
+	if ( broadcastTime > 3.f )
 	{
 		broadcastTime = 0.f;
+
+		Game_System::GetInstance().Server_Tick( DeltaTime );
 
 		if ( _serverPackets.empty() == false )
 		{
@@ -138,21 +142,23 @@ void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* 
 {
 	auto data = (PLAYER_DATA*)packet;
 
-	auto player = Game_System::GetInstance().Get_Player( protocol->server(), protocol->channel(), data->owner()->str() );
+	Player& player = Game_System::GetInstance().Get_Player( protocol->server(), protocol->channel(), data->owner()->str() );
 	printf( "receive");
 	printf( data->owner()->c_str());
 	printf( "\n");
 
 	player._ClientID = data->owner()->str();
 
-	//player._position = *data->position();
+	player.Set_Position( data->position() );
 
-	Packet_System::GetInstance().Make_Player_Packet( player );
+	//player._position = *( data->position() );
+
+	//Packet_System::GetInstance().Make_Player_Packet( player );
 }
 
 void Packet_System::Make_Player_Packet( Player& player )
 {
-	auto data = CreatePLAYER_DATA( _serverBuilder, _serverBuilder.CreateString(player._ClientID), player._NetworkID, &player._position);
+	auto data = CreatePLAYER_DATA( _serverBuilder, _serverBuilder.CreateString(player._ClientID), player._NetworkID, player.Get_Position());
 	printf( "send");
 	printf( player._ClientID.c_str());
 	printf( "\n");

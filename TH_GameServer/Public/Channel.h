@@ -10,6 +10,7 @@ class Channel
 public:
 	bool Initialize();
 	void Tick( float DeltaTime );
+	void Server_Tick( float DeltaTime );
 	void Destroy();
 
 public:

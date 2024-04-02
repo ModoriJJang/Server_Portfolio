@@ -17,6 +17,7 @@ public:
 public:
 	bool Initialize();
 	void Tick( float DeltaTime );
+	void Server_Tick( float DeltaTime );
 	void Destroy();
 	
 public:
@@ -25,7 +26,7 @@ public:
 
 	void Replication_Player(int server, int channel, Player player);
 
-	Player Get_Player(int server, int channel, std::string playerID);
+	Player& Get_Player(int server, int channel, std::string playerID);
 
 	void Add_Player( int server, int channel, std::string playerID );
 

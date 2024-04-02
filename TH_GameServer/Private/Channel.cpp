@@ -1,3 +1,4 @@
+#include <Packet_System.h>
 #include "Channel.h"
 #include <iostream>
 bool Channel::Initialize()
@@ -10,6 +11,18 @@ bool Channel::Initialize()
 
 void Channel::Tick( float DeltaTime )
 {
+	
+}
+
+void Channel::Server_Tick( float DeltaTime )
+{
+	for ( auto& player : _players )
+	{
+		if ( player.second->_Updated == true )
+		{
+			Packet_System::GetInstance().Make_Player_Packet( *player.second );
+		}
+	}
 }
 
 void Channel::Destroy()

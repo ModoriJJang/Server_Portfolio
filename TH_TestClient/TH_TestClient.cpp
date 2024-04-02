@@ -33,7 +33,7 @@ static void ReceiveMessage(SOCKET serverSocket)
 		recv(serverSocket, recvData, 4096, NULL);
 		cout << "패킷 수신 끝" << endl;
 
-		//system( "cls" );
+		system( "cls" );
 
 		auto temp = GetProtocol(recvData);
 		//std::string server = temp->clientid()->str();
@@ -129,7 +129,7 @@ int main()
 		flatbuffers::FlatBufferBuilder builder( 4096 );
 		
 
-		auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder, builder.CreateString(randomID).o ).o );
+		auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder, builder.CreateString(randomID).o, 0, new Vector3() ).o );
 		builder.Finish( packet2 );
 
 		std::vector<flatbuffers::Offset<Packet>> packets;

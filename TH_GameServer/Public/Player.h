@@ -12,6 +12,9 @@ public:
 	void Tick();
 	void Destroy();
 
+	void Set_Position( const TH_Server::TH_Packet::Vector3* position );
+	TH_Server::TH_Packet::Vector3* Get_Position();
+
 public:
 	TH_Server::TH_Packet::Vector3 _position;
 	std::string _ClientID;
