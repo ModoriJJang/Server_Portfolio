@@ -329,3 +329,11 @@ void Socket_System::Broadcast( unsigned char* sendPacket, int len)
 		Send(client, sendPacket, len);
 	}
 }
+
+void Socket_System::Broadcast( unsigned char* sendPacket, int len, std::list<PSocketContext> targetClients )
+{
+	for ( auto& client : targetClients )
+	{
+		Send(client, sendPacket, len);
+	}
+}

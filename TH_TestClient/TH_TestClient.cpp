@@ -129,7 +129,7 @@ int main()
 		flatbuffers::FlatBufferBuilder builder( 4096 );
 		
 
-		auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder, builder.CreateString(randomID).o, 0, new Vector3() ).o );
+		auto packet2 = CreatePacket( builder, PacketData_PLAYER, CreatePLAYER_DATA( builder, builder.CreateString(randomID).o, 0, new Vector3( std::rand(), std::rand(), std::rand()) ).o );
 		builder.Finish( packet2 );
 
 		std::vector<flatbuffers::Offset<Packet>> packets;

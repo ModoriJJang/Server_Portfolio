@@ -8,6 +8,7 @@
 #pragma comment (lib, "mswsock.lib")
 
 #include<set>
+#include<list>
 #include <sstream>
 
 typedef enum _IO_State
@@ -52,6 +53,7 @@ public:
 	void Recv();
 	void Send(PSocketContext socketContext, unsigned char* sendPacket, int len);
 	void Broadcast( unsigned char* sendPacket, int len);
+	void Broadcast( unsigned char* sendPacket, int len, std::list<PSocketContext> targetClients);
 
 private:
 	int _workerThreadCount = 0;

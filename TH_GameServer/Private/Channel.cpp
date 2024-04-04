@@ -20,6 +20,7 @@ void Channel::Server_Tick( float DeltaTime )
 	{
 		if ( player.second->_Updated == true )
 		{
+			printf("[Player] [%s] [ X : %f / Y : %f / Z : %f\n",player.first.c_str(), player.second->_position.x(), player.second->_position.y(), player.second->_position.z());
 			Packet_System::GetInstance().Make_Player_Packet( *player.second );
 		}
 	}
