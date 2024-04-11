@@ -107,7 +107,7 @@ int main()
 		builder.Finish( protocol );
 
 		auto sendPacket = builder.GetBufferPointer();
-		int size = builder.GetSize();
+		int size = builder.GetSize();	
 
 		DWORD flags = 0;
 		int result = -1;

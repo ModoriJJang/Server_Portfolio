@@ -27,6 +27,7 @@
     <ClCompile Include="..\Private\GameServer.cpp" />
     <ClCompile Include="..\Private\Game_System.cpp" />
     <ClCompile Include="..\Private\gRPC_System.cpp" />
+    <ClCompile Include="..\Private\Monster.cpp" />
     <ClCompile Include="..\Private\Packet_System.cpp" />
     <ClCompile Include="..\Private\Player.cpp" />
     <ClCompile Include="..\Private\Socket_System.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="..\Public\GameServer.h" />
     <ClInclude Include="..\Public\Game_System.h" />
     <ClInclude Include="..\Public\gRPC_System.h" />
+    <ClInclude Include="..\Public\Monster.h" />
     <ClInclude Include="..\Public\Packet_System.h" />
     <ClInclude Include="..\Public\Player.h" />
     <ClInclude Include="..\Public\Socket_System.h" />

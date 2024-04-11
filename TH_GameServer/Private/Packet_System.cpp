@@ -22,8 +22,9 @@ void Packet_System::Tick( float DeltaTime )
 {
 	broadcastTime += DeltaTime;
 	
+	if ( broadcastTime > 0.f )
 	//if ( broadcastTime > 12.f / 60.f )
-	if ( broadcastTime > 3.f )
+	//if ( broadcastTime > 3.f )
 	{
 		broadcastTime = 0.f;
 
@@ -149,6 +150,8 @@ void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* 
 
 	player._ClientID = data->owner()->str();
 
+	player._onwer = data->owner()->str();
+
 	player.Set_Position( data->position() );
 
 	//player._position = *( data->position() );
@@ -158,7 +161,7 @@ void Packet_System::Player_PacketProcess(PSocketContext client, const Protocol* 
 
 void Packet_System::Make_Player_Packet( Player& player )
 {
-	auto data = CreatePLAYER_DATA( _serverBuilder, _serverBuilder.CreateString(player._ClientID), player._NetworkID, player.Get_Position());
+	auto data = CreatePLAYER_DATA( _serverBuilder, _serverBuilder.CreateString(player._onwer), player._NetworkID, player.Get_Position());
 	printf( "send");
 	printf( player._ClientID.c_str());
 	printf( "\n");

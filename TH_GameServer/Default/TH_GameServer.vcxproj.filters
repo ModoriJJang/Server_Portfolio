@@ -99,6 +99,9 @@
     <ClCompile Include="..\Private\Cell.cpp">
       <Filter>07.Game\World\Cell</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\Monster.cpp">
+      <Filter>07.Game\GameObject\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\GameServer.h">
@@ -139,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="..\Public\Cell.h">
       <Filter>07.Game\World\Cell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Monster.h">
+      <Filter>07.Game\GameObject\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
